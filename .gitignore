@@ -1,3 +1,4 @@
 # ignore the virtual environment folder
 ./hog-venv/
 ./hog-venv/*
+__pycache__
