@@ -32,7 +32,7 @@ Arne Claerhout
 
 Generates graphs of a given order, that comply with a provided set of filters. Click [here](#using-the-graph-filter) to skip to the usage instructions for generating graphs.
 
-The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.??` file.
+The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
 
 ## Usage
 
@@ -109,7 +109,7 @@ An example for the `filter.json`-file is shown below:
 
 Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the YAML file that contains the filters to be applied:
 
-> `./generate_graphs.sh <plantri_order> <filter_yaml>`
+> `./generate_graphs.sh <plantri_order> <filter_json>`
 
 ## Contents
 
