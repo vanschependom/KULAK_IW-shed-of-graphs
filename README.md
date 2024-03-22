@@ -52,9 +52,9 @@ Update dependencies in **existing** Conda virtual environment:
 
 ## Contents
 
-- `requirements.txt`:
+- `requirements.txt`:  
   A file containing all Python dependencies that are required, used by the Python virtual environment.
-- `README.md`:
+- `README.md`:  
   The file you're reading right now.
-- `.gitignore`:
+- `.gitignore`:  
   A file containing rules about what not to push to the remote repository.
