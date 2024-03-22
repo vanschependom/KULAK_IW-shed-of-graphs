@@ -2,7 +2,7 @@
 
 ## Authors
 Vincent Van Schependom <br>
-?
+Arne Claerhout
 
 ## Version history
 * 0.0 _(22/04/24)_
