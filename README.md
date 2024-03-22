@@ -1,4 +1,4 @@
-# Project Informaticawerktuigen
+# Shed of Graphs
 
 ## Authors
 Vincent Van Schependom <br>
