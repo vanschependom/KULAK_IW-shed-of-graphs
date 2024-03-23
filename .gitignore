@@ -2,3 +2,4 @@
 ./hog-venv/
 ./hog-venv/*
 __pycache__
+output/

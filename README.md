@@ -108,11 +108,11 @@ An example for the filterfile in JSON-format is shown below:
 > {
 >   "max_degree": {
 >     "degree": 2,
->     "amount": 5
+>     "amount": 3
 >   },
 >   "min_degree": {
->     "degree": 3,
->     "amount": 4
+>     "degree": 4,
+>     "amount": 5
 >   }
 > }
 > ```
