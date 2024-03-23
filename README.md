@@ -125,17 +125,17 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
 
 ## Contents
 
-- `requirements.txt`:  
+- `requirements.txt`:
   A file containing all Python dependencies that are required, used by the Python virtual environment.
-- `README.md`:  
+- `README.md`:
   The file you're reading right now.
-- `.gitignore`:  
+- `.gitignore`:
   A file containing rules about what not to push to the remote repository.
-- `generate_graphs.sh`:  
+- `generate_graphs.sh`:
   A bash script for generating graphs.
-- `filter_graphs.py`
+- `filter_graphs.py`:
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
-- `plantri`
+- `plantri`:
   A compiled C program for generating graphs.
-- `example_filter.json`
+- `example_filter.json`:
   A json file containing an example for how to use the filter format.
