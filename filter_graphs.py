@@ -3,6 +3,7 @@ import json
 import networkx as nx
 import matplotlib.pyplot as plt
 import os
+import glob
 
 # Read data from standard input (generated graphs in Graph6 format)
 data = sys.stdin.read()
@@ -20,6 +21,11 @@ except FileNotFoundError:
 # Check if the output directory exists, if not create it
 output_dir = "output"
 os.makedirs(output_dir, exist_ok=True)
+
+# If the directory exists empty it
+files = glob.glob(os.path.join(output_dir, '*'))
+for f in files:
+    os.remove(f)
 
 
 def apply_filters(graph, filters):
