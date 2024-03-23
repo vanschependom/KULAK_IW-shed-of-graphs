@@ -16,14 +16,16 @@ Arne Claerhout
 
 ## Todo-list
 
-- [ ] **Stage 1**: filter implementation in Python
-- [ ] **Stage 2**: system history (history.txt)
-- [ ] **Stage 3**: unit testing
-- [ ] **Stage 4**: rule expansion
-- [ ] **Stage 5**: history file backups
-- [ ] **Stage 6**: bash script for multithreading
-- [ ] **Stage 7**: exporting graph drawings
-- [ ] **Stage 8**: web server
+- [ ] **Stage 1**: Filter implementation in Python
+  - [ ] Bash script
+  - [ ] Python script
+- [ ] **Stage 2**: System history (history.txt)
+- [ ] **Stage 3**: Unit testing
+- [ ] **Stage 4**: Rule expansion
+- [ ] **Stage 5**: History file backups
+- [ ] **Stage 6**: Bash script for multithreading
+- [ ] **Stage 7**: Exporting graph drawings
+- [ ] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
 
 ## Features
@@ -56,7 +58,11 @@ Update dependencies in existing virtual environment
 
 Create a **new** Conda environment with the needed dependencies:
 
-> `conda conda create --name shedofgraphs --file requirements.txt`
+> `conda create --name shedofgraphs --file requirements.txt`
+
+Activating the environment:
+
+> `conda activate shedofgraphs`
 
 Update dependencies in **existing** Conda virtual environment:
 
@@ -123,3 +129,5 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
   A bash script for generating graphs.
 - `filter_graphs.py`
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
+- `plantri`
+  A compiled C program for generating graphs.
