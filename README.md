@@ -5,7 +5,7 @@
 Vincent Van Schependom  
 Arne Claerhout
 
-## Version history
+## Changelog
 
 - 0.0 _(22/04/24)_
   - Project creation
@@ -13,6 +13,10 @@ Arne Claerhout
   - Created `dev` branch
   - Added instructions in `README.md`
   - Started development
+- 1.1 _(23/04/24)_
+  - Created foundations for `filter_graphs.py`, `generate_graphs.py`
+  - Added example `example_filter.json`
+  - Updated `requirements.txt`
 
 ## Todo-list
 
@@ -96,8 +100,10 @@ Filters have a name and one or two parameters. An overview of allowed filters is
     - _degree_
     - _amount_
 
-An example for the `filter.json`-file is shown below:
+An example for the filterfile in JSON-format is shown below:
 
+> **example_filter.json**
+>
 > ```json
 > {
 >   "max_degree": {
@@ -131,3 +137,5 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
 - `plantri`
   A compiled C program for generating graphs.
+- `example_filter.json`
+  A json file containing an example for how to use the filter format.
