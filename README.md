@@ -18,8 +18,7 @@ Arne Claerhout
   - Added example `example_filter.json`
   - Updated `requirements.txt`
 - 1.2 _(24/03/24)_
-  - Added the compiling of plantri
-  - Updated `generate_graphs.sh`
+  - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
 
 ## Todo-list
 
