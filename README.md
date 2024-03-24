@@ -17,6 +17,9 @@ Arne Claerhout
   - Created foundations for `filter_graphs.py`, `generate_graphs.py`
   - Added example `example_filter.json`
   - Updated `requirements.txt`
+- 1.2 _(24/03/24)_
+  - Added the compiling of plantri
+  - Updated `generate_graphs.sh`
 
 ## Todo-list
 
@@ -71,6 +74,12 @@ Activating the environment:
 Update dependencies in **existing** Conda virtual environment:
 
 > `conda install --name shedofgraphs --file requirements.txt`
+
+### Installing plantri
+
+Run the following command from within the project folder to compile the plantri file:
+
+> `cc -o plantri -O4 ./plantri54/plantri.c`
 
 ### Using the graph filter
 
