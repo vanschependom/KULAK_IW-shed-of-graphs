@@ -23,9 +23,9 @@ Arne Claerhout
 
 ## Todo-list
 
-- [ ] **Stage 1**: Filter implementation in Python
-  - [ ] Bash script
-  - [ ] Python script
+- [x] **Stage 1**: Filter implementation in Python
+  - [x] Bash script
+  - [x] Python script
 - [ ] **Stage 2**: System history (history.txt)
 - [ ] **Stage 3**: Unit testing
 - [ ] **Stage 4**: Rule expansion
@@ -49,13 +49,13 @@ The underlying logic is as follows: the bash script `generate_graphs.sh` generat
 
 #### Pip
 
-Create a **new** virtual environment with the needed dependencies in the folder `hog-venv`, which is ignored by `.gitignore`:
+Create a **new** virtual environment with the needed dependencies in the folder `sog-venv`, which is ignored by `.gitignore`:
 
-> `python3 -m venv houseofgraphs ./hog-venv`
+> `python3 -m venv shedofgraphs ./sog-venv`
 
 **Activate** the virtual environment:
 
-> `source hog-venv/bin/activate`
+> `source sog-venv/bin/activate`
 
 Update dependencies in existing virtual environment
 
@@ -75,9 +75,9 @@ Update dependencies in **existing** Conda virtual environment:
 
 > `conda install --name shedofgraphs --file requirements.txt`
 
-### Installing plantri
+### Installing Plantri
 
-Run the following command from within the project folder to compile the plantri file:
+Run the following command from within the project folder to compile the Plantri file:
 
 > `cc -o plantri -O4 ./plantri54/plantri.c`
 
@@ -128,7 +128,7 @@ An example for the filterfile in JSON-format is shown below:
 
 #### Running the script
 
-Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the YAML file that contains the filters to be applied:
+Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the JSON file that contains the filters to be applied:
 
 > `./generate_graphs.sh <plantri_order> <filter_json>`
 
@@ -144,7 +144,7 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
   A bash script for generating graphs.
 - `filter_graphs.py`:
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
-- `plantri`:
-  A compiled C program for generating graphs.
+- `/plantri54`:
+  A folder containing the necessary files for compiling the Plantri C program.
 - `example_filter.json`:
   A json file containing an example for how to use the filter format.
