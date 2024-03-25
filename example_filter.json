@@ -1,0 +1,10 @@
+{
+    "max_degree": {
+      "degree": 2,
+      "amount": 3
+    },
+    "min_degree": {
+      "degree": 4,
+      "amount": 5
+    }
+}

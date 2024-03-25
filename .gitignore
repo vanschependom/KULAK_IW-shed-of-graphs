@@ -1,3 +1,6 @@
 # ignore the virtual environment folder
-./hog-venv/
-./hog-venv/*
+./sog-venv/
+./sog-venv/*
+__pycache__
+output/
+plantri
