@@ -21,6 +21,8 @@ Arne Claerhout
   - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
 - 2.0 _(25/03/24)_
   - Created `stage2` branch
+  - Added the history implementation
+  - Added an explantation to `README.md` about the history of generated graphs
 
 ## Todo-list
 
@@ -28,6 +30,7 @@ Arne Claerhout
   - [x] Bash script
   - [x] Python script
 - [ ] **Stage 2**: System history (history.txt)
+  - [X] History script
 - [ ] **Stage 3**: Unit testing
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
@@ -132,6 +135,16 @@ An example for the filterfile in JSON-format is shown below:
 Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the JSON file that contains the filters to be applied:
 
 > `./generate_graphs.sh <plantri_order> <filter_json>`
+
+#### Viewing history
+
+After running the bash script with an accepted filter, a file with the name history.txt will be created. 
+The history of the 20 last user generated graphs will be stored there.
+Each new entry will be in the following format:
+
+> `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
+
+Where the timestamp is the time at which the graphs were generated. The inputNumber and outputNumber are the amount of generated and filtered graphs respectively. The filter is the filter that has been applied and the passedGraphList is a list of graphs that have passed through the given filter, displayed in the graph6 format.
 
 ## Contents
 
