@@ -107,11 +107,11 @@ i = 0
 graphsList20 = []
 
 while i < outputNumber:
-    graphsList20.append(outputData[i])
-    if i % 20 == 0:
+    if i % 20 == 0 and i != 0:
         file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
                    "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
         graphsList20 = []
+    graphsList20.append(outputData[i])
     i += 1
 
 
