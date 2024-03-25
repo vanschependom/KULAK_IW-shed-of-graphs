@@ -63,9 +63,9 @@ i = 0
 
 # Iterate over the graphs and apply the filters
 for graph in graphs:
-    if i > 50:
-        print("Processed 50 graphs. Exiting...")
-        sys.exit(1)
+    if i >= 100:
+        print("Processed 100 graphs. Exiting...")
+        break
     if graph:
         # Decode Graph6 format to a NetworkX graph
         G = nx.from_graph6_bytes(graph.encode())
@@ -73,7 +73,6 @@ for graph in graphs:
         if apply_filters(G, filters):
             # The output
             outputData.append(graph)
-            
             i += 1
             # Export the graph to the output folder
             output_path = os.path.join(output_dir, f"graph_{i}.png")
@@ -84,32 +83,36 @@ for graph in graphs:
 
 if i == 0:
     print("No graphs matched the filters.")
-    
-    
-# HISTORY   
-inputNumber = data.count("\n") + 1
-outputNumber = i                                        # The output and input numbers for the history file
 
-date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")     # The date for the history file
-filterJson = str(filters)                               # The filter for the history file
+
+# HISTORY
+
+# The output and input numbers for the history file
+inputNumber = len(graphs)
+outputNumber = i
+
+# The date for the history file
+date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+# The filter for the history file
+jsonString = str(filters)
 
 try:
-    file = open("history.txt", "x+")                    # Make a new file with the name history.txt
+    # Make a new file with the name history.txt
+    file = open("history.txt", "x+")
 except:
-    file = open("history.txt", "r")                     # If the above code gives an error, (because the file already exists) read the file
-history = file.read().splitlines()                      # Split all the lines of all the old history  
-                             
-w = open("history.txt", "w")
-for j in range((i//20)+1):
-    w.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) + "\t" + filterJson + "\t" + ",".join(outputData[j:j+20]) + "\n")
-    # Write the new line and delete an old line
-    if len(history) >= 20-j:
-        history.pop(0)   
-          
-for j in history:
-    w.write(j + "\n")                                   # Write all the old history back
+    # If the above code gives an error, (because the file already exists) append to the file
+    file = open("history.txt", "a")
+
+i = 0
+graphsList20 = []
+
+while i < outputNumber:
+    graphsList20.append(outputData[i])
+    if i % 20 == 0:
+        file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
+                   "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
+        graphsList20 = []
+    i += 1
+
 
 file.close()
-w.close()
-
-
