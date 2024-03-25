@@ -10,7 +10,7 @@ Arne Claerhout
 - 0.0 _(22/04/24)_
   - Project creation
 - 1.0 _(22/04/24)_
-  - Created `dev` branch
+  - Created `stage1` branch
   - Added instructions in `README.md`
   - Started development
 - 1.1 _(23/04/24)_
@@ -19,6 +19,8 @@ Arne Claerhout
   - Updated `requirements.txt`
 - 1.2 _(24/03/24)_
   - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
+- 2.0 _(25/03/24)_
+  - Created `stage2` branch
 
 ## Todo-list
 
