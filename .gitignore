@@ -1,6 +1,10 @@
 # ignore the virtual environment folder
 ./sog-venv/
 ./sog-venv/*
+# ignore python cache files
 __pycache__
+# ignore the output folder
 output/
+# ignore the compiled plantri file
 plantri
+history.txt

@@ -10,7 +10,7 @@ Arne Claerhout
 - 0.0 _(22/04/24)_
   - Project creation
 - 1.0 _(22/04/24)_
-  - Created `dev` branch
+  - Created `stage1` branch
   - Added instructions in `README.md`
   - Started development
 - 1.1 _(23/04/24)_
@@ -19,13 +19,22 @@ Arne Claerhout
   - Updated `requirements.txt`
 - 1.2 _(24/03/24)_
   - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
+- 2.0 _(25/03/24)_
+  - Created `stage2` branch
+  - Added the history implementation
+  - Added an explantation to `README.md` about the history of generated graphs
+- 2.1 _(26/03/24)_
+  - Refactored code in `filter_graphs.py`:
+    - Added main method
+    - Everything has its own function now; this will make unit testing easier
 
 ## Todo-list
 
 - [x] **Stage 1**: Filter implementation in Python
   - [x] Bash script
   - [x] Python script
-- [ ] **Stage 2**: System history (history.txt)
+- [x] **Stage 2**: System history (history.txt)
+  - [x] History functionality
 - [ ] **Stage 3**: Unit testing
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
@@ -130,6 +139,19 @@ An example for the filterfile in JSON-format is shown below:
 Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the JSON file that contains the filters to be applied:
 
 > `./generate_graphs.sh <plantri_order> <filter_json>`
+
+#### Viewing history
+
+After running the bash script with an accepted filter, a file with the name history.txt will be created, if it doesn't exist already. If the file already exists, we will append entries at the end of the file.
+Each entry represents 20 processed graphs and will have the following format:
+
+> `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
+>
+> - `timestamp` is the current time in `%d/%m/%Y %H:%M:%S` format
+> - `inputNumber` is the number of graphs generated of the given order by Plantri
+> - `outputNumber` is the number of of graphs that passed the provided filter
+> - `filter` is the JSON filter, parsed as a string
+> - `passedGraphList` is a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 ## Contents
 
