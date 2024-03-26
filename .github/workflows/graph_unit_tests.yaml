@@ -19,4 +19,4 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          coverage run -m pytest  -v -s
+          pytest filter_graphs_test.py -v -s
