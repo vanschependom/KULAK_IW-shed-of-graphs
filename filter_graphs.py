@@ -114,5 +114,7 @@ while i < outputNumber:
     graphsList20.append(outputData[i])
     i += 1
 
+file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
+           "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
 
 file.close()

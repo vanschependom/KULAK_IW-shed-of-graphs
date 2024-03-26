@@ -7,3 +7,4 @@ __pycache__
 output/
 # ignore the compiled plantri file
 plantri
+history.txt
