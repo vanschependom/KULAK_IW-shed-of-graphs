@@ -62,3 +62,5 @@ if __name__ == "__main__":
     # todo test_write_history()
     # todo test_process_graphs()
     print("All tests passed.")
+    # exit
+    exit(0)
