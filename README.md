@@ -23,6 +23,10 @@ Arne Claerhout
   - Created `stage2` branch
   - Added the history implementation
   - Added an explantation to `README.md` about the history of generated graphs
+- 2.1 _(26/03/24)_
+  - Refactored code in `filter_graphs.py`:
+    - Added main method
+    - Everything has its own function now; this will make unit testing easier
 
 ## Todo-list
 
