@@ -55,11 +55,13 @@ Generates graphs of a given order, that comply with a provided set of filters. C
 
 The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
 
+A history of all generated graphs is kept in the `history.txt` file. For more information about this file, click [here](#viewing-the-history).
+
 ## Usage
 
 ### Installing Python dependencies in virtual environment
 
-#### Pip
+#### 1. Pip
 
 Create a **new** virtual environment with the needed dependencies in the folder `sog-venv`, which is ignored by `.gitignore`:
 
@@ -73,7 +75,7 @@ Update dependencies in existing virtual environment
 
 > `pip3 install --upgrade -r requirements.txt`
 
-#### Conda
+#### 2. Conda
 
 Create a **new** Conda environment with the needed dependencies:
 
