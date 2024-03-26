@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 # A method for emptying a given folder
-def empty_folder(dir):
+def empty_directory(dir):
 
     # If the directory exists, empty it
     files = glob.glob(os.path.join(dir, '*'))
@@ -18,7 +18,7 @@ def empty_folder(dir):
 
 # A method for applying a given set of filters to a given graph
 #   @returns True if the graph passes the filter
-def passes_filters(graph, filters):
+def passed_filters(graph, filters):
     # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
     for filterType, filterData in filters.items():
         if filterType == 'only_degree':
@@ -44,10 +44,10 @@ def passes_filters(graph, filters):
 
 
 # A method for exporting a graph as an image to a given directory, with a given index for the image name
-def export_graph_image(graph, index, dir):
+def export_graph_image(G, index, dir):
     # Export the graph to the output folder
     output_path = os.path.join(dir, f"graph_{index}.png")
-    nx.draw_planar(graph, with_labels=True)  # draw the graph
+    nx.draw_planar(G, with_labels=True)  # draw the graph
     plt.savefig(output_path)  # save the graph
     plt.close()
     print(f"Graph {index} was saved as {output_path}")
@@ -56,7 +56,7 @@ def export_graph_image(graph, index, dir):
 # A method for processing graphs based on a given set of filters in JSON fomrat
 def process_graphs(graphs, filters):
 
-    outputData = []
+    passed = []
     i = 0
 
     # Iterate over the graphs and apply the filters
@@ -69,9 +69,9 @@ def process_graphs(graphs, filters):
             # Decode Graph6 format to a NetworkX graph
             G = nx.from_graph6_bytes(graph.encode())
             # Check if the graph passes the filters
-            if passes_filters(G, filters):
+            if passed_filters(G, filters):
                 # The output
-                outputData.append(graph)
+                passed.append(graph)
                 i += 1
                 # export the graph image
                 export_graph_image(G, i, output_dir)
@@ -79,7 +79,7 @@ def process_graphs(graphs, filters):
     if i == 0:
         return None
     else:
-        return outputData
+        return passed
 
 
 # A method for writing the history file
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     os.makedirs("output", exist_ok=True)
 
     # Empty the output directory
-    empty_folder(output_dir)
+    empty_directory(output_dir)
 
     # Split the data (graphs) by new line
     graphs = data.split('\n')
