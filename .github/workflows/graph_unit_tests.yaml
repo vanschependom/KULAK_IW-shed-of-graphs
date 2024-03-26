@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      # - name: Checkout repository
+      #   uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+      # - name: Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: 3.x
 
       - name: Install dependencies
         run: |
@@ -24,3 +24,6 @@ jobs:
       - name: Run unit tests
         run: |
           python -m pytest filter_graphs_test.py
+
+      - name: Tests passed
+        run: echo "All tests passed!"
