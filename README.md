@@ -8,7 +8,7 @@ Arne Claerhout
 ## Changelog
 
 - 0.0 _(22/04/24)_
-  - Project creation
+- Project creation
 - 1.0 _(22/04/24)_
   - Created `stage1` branch
   - Added instructions in `README.md`
@@ -20,6 +20,7 @@ Arne Claerhout
 - 1.2 _(24/03/24)_
   - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
 - 2.0 _(25/03/24)_
+  - Merged `stage1` with `main`
   - Created `stage2` branch
   - Added the history implementation
   - Added an explantation to `README.md` about the history of generated graphs
@@ -27,6 +28,9 @@ Arne Claerhout
   - Refactored code in `filter_graphs.py`:
     - Added main method
     - Everything has its own function now; this will make unit testing easier
+- 3.0 _(26/03/24)_
+  - Merged `stage2` with `main`
+  - Created `stage3` branch
 
 ## Todo-list
 
