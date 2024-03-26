@@ -50,7 +50,6 @@ def export_graph_image(G, index, dir):
     nx.draw_planar(G, with_labels=True)  # draw the graph
     plt.savefig(output_path)  # save the graph
     plt.close()
-    print(f"Graph {index} was saved as {output_path}")
 
 
 # A method for processing graphs based on a given set of filters in JSON fomrat
@@ -77,16 +76,15 @@ def process_graphs(graphs, filters):
                 export_graph_image(G, i, output_dir)
 
     if i == 0:
+        print("No graphs passed the filters.")
         return None
     else:
+        print(f"{i} graphs passed the filters.")
         return passed
 
 
 # A method for writing the history file
 def write_history(inputNumber, passed, filters):
-
-    # The output and input numbers for the history file
-    outputNumber = len(passed)
 
     # The date for the history file
     date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
@@ -101,21 +99,34 @@ def write_history(inputNumber, passed, filters):
         # If the above code gives an error, (because the file already exists) append to the file
         file = open("history.txt", "a")
 
-    i = 0
-    graphsList20 = []
+    # If graphs passed the filters, write them to the file
+    if passed != None:
 
-    # Loop over all passed graphs
-    while i < outputNumber:
-        if i % 20 == 0 and i != 0:
-            file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
-                       "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
-            graphsList20 = []
-        graphsList20.append(passed[i])
-        i += 1
+        # The output and input numbers for the history file
+        outputNumber = len(passed)
 
-    # Write the remaining graphs
-    file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
-               "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
+        i = 0
+        graphsList20 = []
+
+        # Loop over all passed graphs
+        while i < outputNumber:
+            if i % 20 == 0 and i != 0:
+                file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
+                           "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
+                graphsList20 = []
+            graphsList20.append(passed[i])
+            i += 1
+
+        # Write the remaining graphs
+        file.write(date + "\t" + str(inputNumber) + "\t" + str(outputNumber) +
+                   "\t" + jsonString + "\t" + ", ".join(graphsList20) + "\n")
+
+    # If no graphs passed the filters, write NA
+    else:
+
+        file.write(date + "\t" + str(inputNumber) + "\t" + "0" +
+                   "\t" + jsonString + "\t" + "NA" + "\n")
+        file.close()
 
     # Close the file
     file.close()
