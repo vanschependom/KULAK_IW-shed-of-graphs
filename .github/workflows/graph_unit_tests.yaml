@@ -23,4 +23,4 @@ jobs:
 
       - name: Run unit tests
         run: |
-          python -m pytest test_graph_filter.py
+          python -m pytest filter_graphs_test.py
