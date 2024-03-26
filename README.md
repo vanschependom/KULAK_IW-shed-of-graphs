@@ -33,8 +33,8 @@ Arne Claerhout
 - [x] **Stage 1**: Filter implementation in Python
   - [x] Bash script
   - [x] Python script
-- [ ] **Stage 2**: System history (history.txt)
-  - [x] History script
+- [x] **Stage 2**: System history (history.txt)
+  - [x] History functionality
 - [ ] **Stage 3**: Unit testing
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
