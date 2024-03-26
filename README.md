@@ -30,7 +30,7 @@ Arne Claerhout
   - [x] Bash script
   - [x] Python script
 - [ ] **Stage 2**: System history (history.txt)
-  - [X] History script
+  - [x] History script
 - [ ] **Stage 3**: Unit testing
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
@@ -138,13 +138,16 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
 
 #### Viewing history
 
-After running the bash script with an accepted filter, a file with the name history.txt will be created. 
-The history of the 20 last user generated graphs will be stored there.
-Each new entry will be in the following format:
+After running the bash script with an accepted filter, a file with the name history.txt will be created, if it doesn't exist already. If the file already exists, we will append entries at the end of the file.
+Each entry represents 20 processed graphs and will have the following format:
 
 > `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
-
-Where the timestamp is the time at which the graphs were generated. The inputNumber and outputNumber are the amount of generated and filtered graphs respectively. The filter is the filter that has been applied and the passedGraphList is a list of graphs that have passed through the given filter, displayed in the graph6 format.
+>
+> - `timestamp` is the current time in `%d/%m/%Y %H:%M:%S` format
+> - `inputNumber` is the number of graphs generated of the given order by Plantri
+> - `outputNumber` is the number of of graphs that passed the provided filter
+> - `filter` is the JSON filter, parsed as a string
+> - `passedGraphList` is a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 ## Contents
 
