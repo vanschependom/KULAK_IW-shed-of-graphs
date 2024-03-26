@@ -59,3 +59,5 @@ def test_passed_filters_exact():
     assert passed_filters(test_graphs[0], filters) == True
     assert passed_filters(test_graphs[1], filters) == False
     assert passed_filters(test_graphs[2], filters) == False
+
+# TODO: add all tests
