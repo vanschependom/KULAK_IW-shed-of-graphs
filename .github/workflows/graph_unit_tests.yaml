@@ -8,22 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # - name: Set up Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: 3.x
-
-      - name: Install dependencies
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: pip install -r requirements.txt
+      - run: pip test
+      - name: Test with pytest
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run unit tests
-        run: |
-          python -m pytest filter_graphs_test.py
-
-      - name: Tests passed
-        run: echo "All tests passed!"
+          pip install pytest pytest-cov
+          pytest filter_graphs_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
