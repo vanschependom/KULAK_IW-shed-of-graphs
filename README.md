@@ -220,5 +220,5 @@ Each entry represents 20 processed graphs using the following format:
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
 - `/plantri54`:
   A folder containing the necessary files for compiling the Plantri C program.
-- `example_filter.json`:
-  A json file containing an example for how to use the filter format.
+- `example_filter.json` and `example_filter_2.json`:
+  JSON files containing an example for how to use the filter format.
