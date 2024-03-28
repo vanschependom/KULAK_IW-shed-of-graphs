@@ -23,7 +23,7 @@ Arne Claerhout
   - Merged `stage1` with `main`
   - Created `stage2` branch
   - Added the history implementation
-  - Added an explantation to `README.md` about the history of generated graphs
+  - Added an explanation to `README.md` about the history of generated graphs
 - 2.1 _(26/03/24)_
   - Refactored code in `filter_graphs.py`:
     - Added main method
@@ -31,6 +31,8 @@ Arne Claerhout
 - 3.0 _(26/03/24)_
   - Merged `stage2` with `main`
   - Created `stage3` branch
+- 3.1 _(28/03/24)_
+  - Added unit tests for filter and history functionality
 
 ## Todo-list
 
@@ -39,7 +41,8 @@ Arne Claerhout
   - [x] Python script
 - [x] **Stage 2**: System history (history.txt)
   - [x] History functionality
-- [ ] **Stage 3**: Unit testing
+- [X] **Stage 3**: Unit testing
+  - [X] Testing functionality
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
 - [ ] **Stage 6**: Bash script for multithreading
@@ -158,11 +161,11 @@ Each entry represents 20 processed graphs using the following format:
 
 > `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
 >
-> - `timestamp`: the current time in `%d/%m/%Y %H:%M:%S` format
-> - `inputNumber`: the number of graphs generated of the given order by Plantri
-> - `outputNumber`: the number of of graphs that passed the provided filter
-> - `filter`: the provided JSON filter, parsed as a string
-> - `passedGraphList`: a comma-seperated list of the Graph6 representations of graphs that passed the filter
+> - `timestamp:` the current time in `%d/%m/%Y %H:%M:%S` format
+> - `inputNumber:` the number of graphs generated of the given order by Plantri
+> - `outputNumber:` the number of of graphs that passed the provided filter
+> - `filter:` the provided JSON filter, parsed as a string
+> - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 ## Contents
 
