@@ -70,12 +70,12 @@ def test_passed_filters_max_list():
     filters = {
         "max_degree": {
             "degree": [4, 5],
-            "amount": 1
+            "amount": 4
         }
     }
 
     assert passed_filters(test_graphs[0], filters) == True
-    assert passed_filters(test_graphs[1], filters) == True
+    assert passed_filters(test_graphs[1], filters) == False
     assert passed_filters(test_graphs[2], filters) == False
     assert passed_filters(test_graphs[3], filters) == False
 
@@ -85,13 +85,28 @@ def test_passed_filters_min_list():
     filters = {
         "min_degree": {
             "degree": [5, 6],
-            "amount": 6
+            "amount": 4
         }
     }
 
     assert passed_filters(test_graphs[0], filters) == False
     assert passed_filters(test_graphs[1], filters) == False
     assert passed_filters(test_graphs[2], filters) == True
+    assert passed_filters(test_graphs[3], filters) == True
+
+
+def test_passed_filters_exact_list():
+
+    filters = {
+        "exact_degree": {
+            "degree": [4, 5],
+            "amount": 5
+        }
+    }
+
+    assert passed_filters(test_graphs[0], filters) == False
+    assert passed_filters(test_graphs[1], filters) == True
+    assert passed_filters(test_graphs[2], filters) == False
     assert passed_filters(test_graphs[3], filters) == False
 
 
