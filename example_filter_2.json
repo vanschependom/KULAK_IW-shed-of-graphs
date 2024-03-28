@@ -1,6 +1,6 @@
 {
     "exact_degree": {
-        "degree": [3],
-        "amount": 7
+        "degree": [4,5],
+        "amount": 10
     }
 }
