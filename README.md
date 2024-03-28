@@ -31,8 +31,11 @@ Arne Claerhout
 - 3.0 _(26/03/24)_
   - Merged `stage2` with `main`
   - Created `stage3` branch
-- 3.1 _(28/03/24)_
-  - Added unit tests for filter and history functionality
+- 3.1 _(26/03/24)_
+  - Created first tests for `passed_filter()`
+- 3.2 _(28/03/24)_
+  - Split the history functionality into seperate methods `generate_history()` and `write_history()`
+  - Added additional unit tests for filter and history functionality
 
 ## Todo-list
 
@@ -41,8 +44,8 @@ Arne Claerhout
   - [x] Python script
 - [x] **Stage 2**: System history (history.txt)
   - [x] History functionality
-- [X] **Stage 3**: Unit testing
-  - [X] Testing functionality
+- [x] **Stage 3**: Unit testing
+  - [x] Testing functionality
 - [ ] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
 - [ ] **Stage 6**: Bash script for multithreading
@@ -64,7 +67,13 @@ A history of all generated graphs is kept in the `history.txt` file. For more in
 
 ### Installing Python dependencies in virtual environment
 
-#### 1. Pip
+#### Pip
+
+<details>
+
+  <summary>
+    Click to expand
+  </summary>
 
 Create a **new** virtual environment with the needed dependencies in the folder `sog-venv`, which is ignored by `.gitignore`:
 
@@ -78,7 +87,15 @@ Update dependencies in existing virtual environment
 
 > `pip3 install --upgrade -r requirements.txt`
 
-#### 2. Conda
+</details>
+
+#### Conda
+
+<details>
+
+  <summary>
+    Click to expand
+  </summary>
 
 Create a **new** Conda environment with the needed dependencies:
 
@@ -91,6 +108,8 @@ Activating the environment:
 Update dependencies in **existing** Conda virtual environment:
 
 > `conda install --name shedofgraphs --file requirements.txt`
+
+</details>
 
 ### Installing Plantri
 
