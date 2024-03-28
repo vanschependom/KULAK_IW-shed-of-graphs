@@ -41,6 +41,8 @@ Arne Claerhout
   - Created `stage4` branch
 - 4.1 _(28/03/24)_
   - Added rule expansion
+- 4.2 _(28/03/24)_
+  - Added supplementary unit tests for the rule expansion
 
 ## Todo-list
 
@@ -51,7 +53,7 @@ Arne Claerhout
   - [x] History functionality
 - [x] **Stage 3**: Unit testing
   - [x] Testing functionality
-- [ ] **Stage 4**: Rule expansion
+- [x] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
 - [ ] **Stage 6**: Bash script for multithreading
 - [ ] **Stage 7**: Exporting graph drawings
