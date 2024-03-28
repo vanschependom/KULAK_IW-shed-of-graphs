@@ -167,15 +167,15 @@ An example for the filterfile in JSON-format is shown below:
 > }
 > ```
 
-Another example - passing a list in the `degree` argument - is shown below:
+Another example - passing a list, instead of an integer, in the `degree` argument - is shown below:
 
 > **example_filter_2.json**
 >
 > ```json
 > {
 >   "exact": {
->     "degree": [3, 4, 5],
->     "amount": 7
+>     "degree": [4, 5],
+>     "amount": 10
 >   }
 > }
 > ```
