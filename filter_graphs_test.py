@@ -14,9 +14,10 @@ def test_passed_filters_only():
         }
     }
 
-    assert passed_filters(test_graphs[0], filters) == True
-    assert passed_filters(test_graphs[1], filters) == False
+    assert passed_filters(test_graphs[0], filters) == False
+    assert passed_filters(test_graphs[1], filters) == True
     assert passed_filters(test_graphs[2], filters) == False
+    assert passed_filters(test_graphs[3], filters) == False
 
 
 def test_passed_filters_max():
@@ -28,9 +29,10 @@ def test_passed_filters_max():
         }
     }
 
-    assert passed_filters(test_graphs[0], filters) == False
-    assert passed_filters(test_graphs[1], filters) == True
+    assert passed_filters(test_graphs[0], filters) == True
+    assert passed_filters(test_graphs[1], filters) == False
     assert passed_filters(test_graphs[2], filters) == True
+    assert passed_filters(test_graphs[3], filters) == True
 
 
 def test_passed_filters_min():
@@ -41,10 +43,11 @@ def test_passed_filters_min():
             "amount": 1
         }
     }
-
-    assert passed_filters(test_graphs[0], filters) == True
-    assert passed_filters(test_graphs[1], filters) == False
+    
+    assert passed_filters(test_graphs[0], filters) == False
+    assert passed_filters(test_graphs[1], filters) == True
     assert passed_filters(test_graphs[2], filters) == False
+    assert passed_filters(test_graphs[3], filters) == False
 
 
 def test_passed_filters_exact():
@@ -56,9 +59,10 @@ def test_passed_filters_exact():
         }
     }
 
-    assert passed_filters(test_graphs[0], filters) == True
-    assert passed_filters(test_graphs[1], filters) == False
+    assert passed_filters(test_graphs[0], filters) == False
+    assert passed_filters(test_graphs[1], filters) == True
     assert passed_filters(test_graphs[2], filters) == False
+    assert passed_filters(test_graphs[3], filters) == False
 
 
 def test_history_1():
@@ -72,7 +76,7 @@ def test_history_1():
     }
     
     assert generate_history(10, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                                                          10, len(test_graphs), str(filters),
+                                                          "10", str(len(test_graphs)), str(filters),
                                                           ", ".join(test_graphs)]]
     
 def test_history_2():
@@ -86,7 +90,7 @@ def test_history_2():
     }
     
     assert generate_history(85, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                                                          85, len(test_graphs), str(filters),
+                                                          "85", str(len(test_graphs)), str(filters),
                                                           ", ".join(test_graphs)]]
     
 def test_history_3():
@@ -103,9 +107,9 @@ def test_history_3():
     }
 
     assert generate_history(120, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                                                            120, len(test_graphs), str(filters),
+                                                            "120", str(len(test_graphs)), str(filters),
                                                             ", ".join(test_graphs[:20])], 
                                                          [datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                                                            120, len(test_graphs), str(filters),
+                                                            "120", str(len(test_graphs)), str(filters),
                                                             ", ".join(test_graphs[20:])]]
     
