@@ -131,24 +131,24 @@ First, create a `filter.json` file, in which you specify which filters you want 
 Filters have a name and one or two parameters. An overview of allowed filters is given below:
 
 - **only_degree**
-  - The graph can **only** contain vertices with degree _\<degree\>_
+  - The graph can **only** contain vertices with degree(s) _\<degree\>_
   - Arguments:
-    - _degree_
+    - _degree_: either and integer or a list of integers
 - **min_degree**
   - The graph must contain **at least** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 - **max_degree**
   - The graph must contain **at most** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 - **exact_degree**
   - The graph must contain **exactly** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 
 An example for the filterfile in JSON-format is shown below:
 
@@ -163,6 +163,19 @@ An example for the filterfile in JSON-format is shown below:
 >   "min_degree": {
 >     "degree": 4,
 >     "amount": 5
+>   }
+> }
+> ```
+
+Another example - passing a list in the `degree` argument - is shown below:
+
+> **example_filter_2.json**
+>
+> ```json
+> {
+>   "exact": {
+>     "degree": [3, 4, 5],
+>     "amount": 7
 >   }
 > }
 > ```

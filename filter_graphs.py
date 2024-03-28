@@ -45,11 +45,11 @@ def passed_filters(graph, filters):
                 elif type(degree) == list and graph.degree[node] in degree:
                     counter += 1
 
-            if filterData['type'] == 'min_degree' and counter < amount:
+            if filterType == 'min_degree' and counter < amount:
                 return False
-            elif filterData['type'] == 'max_degree' and counter > amount:
+            elif filterType == 'max_degree' and counter > amount:
                 return False
-            elif filterData['type'] == 'exact_degree' and counter != amount:
+            elif filterType == 'exact_degree' and counter != amount:
                 return False
 
     return True
@@ -157,8 +157,6 @@ if __name__ == "__main__":
     data = sys.stdin.read()
     # Get the path to the JSON file containing the filters (passed as command line argument)
     path_to_filter = sys.argv[1]
-    print([nx.complete_graph(4), nx.complete_graph(
-        5), nx.complete_graph(6), nx.complete_graph(7)])
 
     # Check if filter file exists
     # If it does, load the json data in variable <filters>
