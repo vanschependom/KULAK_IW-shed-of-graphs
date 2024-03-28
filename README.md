@@ -36,6 +36,11 @@ Arne Claerhout
 - 3.2 _(28/03/24)_
   - Split the history functionality into seperate methods `generate_history()` and `write_history()`
   - Added additional unit tests for filter and history functionality
+- 4.0 _(28/03/24)_
+  - Merged `stage3` with `main`
+  - Created `stage4` branch
+- 4.1 _(28/03/24)_
+  - Added rule expansion
 
 ## Todo-list
 
