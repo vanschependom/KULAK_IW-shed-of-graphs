@@ -6,6 +6,50 @@ test_graphs = [nx.complete_graph(4), nx.complete_graph(
     5), nx.complete_graph(6), nx.complete_graph(7)]
 
 
+def test_filter_validity_1():
+    filters = {
+        "hello":  {
+            "degree": "6"
+        },
+        "TestTestTest": 17
+    }
+    
+    assert is_valid_filter(filters) == False
+    
+def test_filter_validity_2():
+    filters = {
+        "only_degree":  {
+            "degree": "6"
+        }
+    }
+    
+    assert is_valid_filter(filters) == False
+    
+def test_filter_validity_3():
+    filters = {
+        "only_degree":  {
+            "degree": 3,
+            "amount": 4
+        }
+    }
+    
+    assert is_valid_filter(filters) == False
+    
+def test_filter_validity_4():
+    filters = {
+        "max_degree":  {
+            "degree": 3,
+            "amount": 4
+        },
+        "min_degree": {
+            "degree": 5,
+            "amount": 7,
+            "extra": 9
+        }
+    }
+    
+    assert is_valid_filter(filters) == False
+
 def test_passed_filters_only():
 
     filters = {
