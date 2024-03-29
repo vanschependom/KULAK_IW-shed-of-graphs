@@ -25,6 +25,8 @@ def is_valid_filter(filters):
             # If the type was not valid return False
             elif (filterType != 'max_degree' and filterType != 'min_degree' and filterType != 'exact_degree' and filterType != 'only_degree'):
                 return False
+            else:
+                return True
     except:
         # If we get an error somewhere (because, for example, it does not exist), return False
         return False
