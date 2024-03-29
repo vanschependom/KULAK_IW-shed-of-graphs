@@ -7,6 +7,27 @@ import glob
 from datetime import datetime
 
 
+def is_valid_filter(filters):
+    try:
+        # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
+        for filterType, filterData in filters.items():
+
+            # Check if the filter type is 'only_degree' and if the type of degree is valid
+            if filterType == 'only_degree' and (type(filterData['degree']) != int or type(filterData['degree']) != list):
+                return False
+            # Check if the filter type is a type not equal to 'only_degree' but still valid
+            # and if the type of the degrees and amount are valid
+            elif (filterType == 'max_degree' or filterType == 'min_degree' or filterType == 'exact_degree') \
+                and (type(filterData['degree']) != int or type(filterData['amount']) != int or type(filterData['degree']) != list):
+                return False
+            # If the type was not valid return False
+            else:
+                return False
+    except:
+        # If we get an error somewhere (because, for example, it does not exist), return False
+        return False
+        
+
 # A method for emptying a given folder
 def empty_directory(dir):
 
@@ -19,6 +40,7 @@ def empty_directory(dir):
 # A method for applying a given set of filters to a given graph
 #   @returns True if the graph passes the filter
 def passed_filters(graph, filters):
+    
     # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
     for filterType, filterData in filters.items():
 
@@ -167,6 +189,16 @@ if __name__ == "__main__":
     # Print error to the user.
     except FileNotFoundError:
         print("The filter file was not found. Please provide a valid path.")
+        sys.exit(1)
+    except:
+        # If we get a different error, this means that the json file is not valid
+        print("The filter file is not valid. Please provide a valid filter.")
+        sys.exit(1)
+        
+    # Check if the filter is valid
+    if not is_valid_filter(filters):
+        # If it is not we exit
+        print("The filter file is not valid. Please provide a valid filter.")
         sys.exit(1)
 
     # Check if the output directory exists, if not create it
