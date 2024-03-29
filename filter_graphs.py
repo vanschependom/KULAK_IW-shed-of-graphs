@@ -13,14 +13,14 @@ def is_valid_filter(filters):
         for filterType, filterData in filters.items():
 
             # Check if the filter type is 'only_degree' and if the type of degree is valid
-            if filterType == 'only_degree' and (type(filterData['degree']) != int or type(filterData['degree']) != list) \
-            and len(filterData) != 1:
+            if filterType == 'only_degree' and ((type(filterData['degree']) != int or type(filterData['degree']) != list) \
+            or len(filterData) != 1):
                 return False
             # Check if the filter type is a type not equal to 'only_degree' but still valid
             # and if the type of the degrees and amount are valid
             elif (filterType == 'max_degree' or filterType == 'min_degree' or filterType == 'exact_degree') \
-                and (type(filterData['degree']) != int or type(filterData['amount']) != int or type(filterData['degree']) != list) \
-                    and len(filterData) != 2:
+                and ((type(filterData['degree']) != int or type(filterData['amount']) != int or type(filterData['degree']) != list) \
+                    or len(filterData) != 2):
                 return False
             # If the type was not valid return False
             elif (filterType != 'max_degree' and filterType != 'min_degree' and filterType != 'exact_degree' and filterType != 'only_degree'):
