@@ -52,6 +52,9 @@ Arne Claerhout
   - Merged `stage4` with `main`
   - Created `stage5` branch
 - 5.1 _(30/03/24)_
+  - Added backup functionality (`history_backup.sh`)
+  - Added restore functionality (`restore_from_backup.sh`)
+  - Added instructions for all new features in `README.md`
 
 ## Todo-list
 
@@ -63,7 +66,7 @@ Arne Claerhout
 - [x] **Stage 3**: Unit testing
   - [x] Testing functionality
 - [x] **Stage 4**: Rule expansion
-- [ ] **Stage 5**: History file backups
+- [x] **Stage 5**: History file backups
 - [ ] **Stage 6**: Bash script for multithreading
 - [ ] **Stage 7**: Exporting graph drawings
 - [ ] **Stage 8**: Web server
@@ -81,9 +84,13 @@ The underlying logic is as follows: the bash script `generate_graphs.sh` generat
 
 A history of all filtered graphs is kept in the `history.txt` file. For more information about this file, click [here](#history-1).
 
-### History backup
+#### Backup
 
 We have provided a script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`. To make this script run every hour, you must [configure it](#configuring-automatic-history-backup) in the cron table.
+
+#### Restoring
+
+If you have configured the history backup, you can also restore `history.txt` from a saved backup in `~/.filtered_graphs` by running `restore_from_backup.sh`. Click [here](#restoring-the-history-from-a-backup) for the instructions on restoring the history file.
 
 ## Usage
 
@@ -238,6 +245,14 @@ Save and exit the cron table. Afterwards, verify that the crontab was succesfull
 > `crontab -l`
 
 If you can see the crontab we've just configured, you're all good!
+
+#### Restoring the history from a backup
+
+To restore the history from a saved backup in the `~/.filtered-graphs` folder, simply run:
+
+> `restore_from_backup.sh`
+
+All available backups will be listed and you will be prompted to select the one you wish to restore.
 
 ## Contents
 
