@@ -13,18 +13,20 @@ def test_filter_validity_1():
         },
         "TestTestTest": 17
     }
-    
-    assert is_valid_filter(filters) == False
-    
+
+    assert are_valid_filters(filters) == False
+
+
 def test_filter_validity_2():
     filters = {
         "only_degree":  {
             "degree": "6"
         }
     }
-    
-    assert is_valid_filter(filters) == False
-    
+
+    assert are_valid_filters(filters) == False
+
+
 def test_filter_validity_3():
     filters = {
         "only_degree":  {
@@ -32,9 +34,10 @@ def test_filter_validity_3():
             "amount": 4
         }
     }
-    
-    assert is_valid_filter(filters) == False
-    
+
+    assert are_valid_filters(filters) == False
+
+
 def test_filter_validity_4():
     filters = {
         "max_degree":  {
@@ -47,8 +50,35 @@ def test_filter_validity_4():
             "extra": 9
         }
     }
-    
-    assert is_valid_filter(filters) == False
+
+    assert are_valid_filters(filters) == False
+
+
+def test_filter_validity_5():
+    filters = {
+        "exact_degree": {
+            "degree": [4, 5],
+            "amount": 10
+        }
+    }
+
+    assert are_valid_filters(filters) == True
+
+
+def test_filter_validity_6():
+    filters = {
+        "max_degree": {
+            "degree": 2,
+            "amount": 3
+        },
+        "min_degree": {
+            "degree": 4,
+            "amount": 5
+        }
+    }
+
+    assert are_valid_filters(filters) == True
+
 
 def test_passed_filters_only():
 

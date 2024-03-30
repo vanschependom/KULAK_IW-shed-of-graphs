@@ -43,6 +43,11 @@ Arne Claerhout
   - Added rule expansion
 - 4.2 _(28/03/24)_
   - Added supplementary unit tests for the rule expansion
+- 4.3 _(29/03/24)_
+  - Added illegal filter detection and corresponding tests
+- 4.4 _(30/03/24)_
+  - Added docstrings to `filter_graphs.py`
+  - Added supplementary illegal filter detection tests
 
 ## Todo-list
 
