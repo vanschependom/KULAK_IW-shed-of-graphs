@@ -22,7 +22,9 @@ bool
 
 
 def are_valid_filters(filters):
+
     try:
+
         # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
         for filterType, filterData in filters.items():
 
@@ -31,19 +33,28 @@ def are_valid_filters(filters):
                 ((type(filterData['degree']) != int or type(filterData['degree']) != list)
                  or len(filterData) != 1):
                 return False
+
             # Check if the filter type is a type not equal to 'only_degree' but still valid
             # and if the type of the degrees and amount are valid
-            elif (filterType == 'max_degree' or filterType == 'min_degree' or filterType == 'exact_degree') \
-                and ((type(filterData['degree']) != int or type(filterData['amount']) != int or type(filterData['degree']) != list)
-                     or len(filterData) != 2):
+
+            elif (filterType in ['max_degree', 'min_degree', 'exact_degree']) \
+                and (len(filterData) != 2
+                     or (type(filterData['degree']) != int and type(filterData['degree']) != list)
+                     or type(filterData['amount']) != int):
                 return False
+
             # If the type was not valid return False
-            elif (filterType != 'max_degree' and filterType != 'min_degree' and filterType != 'exact_degree' and filterType != 'only_degree'):
+            elif (filterType not in ['max_degree', 'min_degree', 'exact_degree', 'only_degree']):
                 return False
-            else:
-                return True
-    except:
+
+        # Only return true if all filters passed!!
+        else:
+            return True
+
+    except Exception as e:
+
         # If we get an error somewhere (because, for example, it does not exist), return False
+        print(e)
         return False
 
 
