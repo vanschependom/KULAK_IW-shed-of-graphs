@@ -106,15 +106,21 @@ If you have configured the history backup, you can also restore `history.txt` fr
 
 Create a **new** virtual environment with the needed dependencies in the folder `sog-venv`, which is ignored by `.gitignore`:
 
-> `python3 -m venv shedofgraphs ./sog-venv`
+> ```bash
+> python3 -m venv shedofgraphs ./sog-venv
+> ```
 
 **Activate** the virtual environment:
 
-> `source sog-venv/bin/activate`
+> ```bash
+> source sog-venv/bin/activate
+> ```
 
 Update dependencies in existing virtual environment
 
-> `pip3 install --upgrade -r requirements.txt`
+> ```bash
+> pip3 install --upgrade -r requirements.txt
+> ```
 
 </details>
 
@@ -128,15 +134,21 @@ Update dependencies in existing virtual environment
 
 Create a **new** Conda environment with the needed dependencies:
 
-> `conda create --name shedofgraphs --file requirements.txt`
+> ```bash
+> conda create --name shedofgraphs --file requirements.txt
+> ```
 
 Activating the environment:
 
-> `conda activate shedofgraphs`
+> ```bash
+> conda activate shedofgraphs
+> ```
 
 Update dependencies in **existing** Conda virtual environment:
 
-> `conda install --name shedofgraphs --file requirements.txt`
+> ```bash
+> conda install --name shedofgraphs --file requirements.txt
+> ```
 
 </details>
 
@@ -144,7 +156,9 @@ Update dependencies in **existing** Conda virtual environment:
 
 Run the following command from within the project folder to compile the Plantri file:
 
-> `cc -o plantri -O4 ./plantri54/plantri.c`
+> ```bash
+> cc -o plantri -O4 ./plantri54/plantri.c
+> ```
 
 ### Graph filter
 
@@ -208,11 +222,15 @@ Another example - passing a list, instead of an integer, in the `degree` argumen
 
 Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the relative path to the `filter.json` file, that contains the filters to be applied:
 
-> `./generate_graphs.sh <plantri_order> <path_to_filter>`
+> ```bash
+> ./generate_graphs.sh <plantri_order> <path_to_filter>
+> ```
 
 An example is shown below:
 
-> `./generate_graphs.sh 8 example_filter.json`
+> ```bash
+> ./generate_graphs.sh 8 example_filter.json
+> ```
 
 ### History
 
@@ -232,17 +250,23 @@ Each entry represents 20 processed graphs using the following format:
 
 Let's configure the hourly backup of the `history.txt` file. Start by editing the cron table using the following command:
 
-> `crontab -e`
+> ```bash
+> crontab -e
+> ```
 
 Add the following line to the cron table:
 
-> `0 * * * * /<working_dir>/backup_history.sh`
+> ```bash
+> 0 * * * * /<working_dir>/backup_history.sh
+> ```
 
 In the command above, `<working_dir>` is the path to your current working directory of this project.
 
 Save and exit the cron table. Afterwards, verify that the crontab was succesfully installed by running the following command:
 
-> `crontab -l`
+> ```bash
+> crontab -l
+> ```
 
 If you can see the crontab we've just configured, you're all good!
 
@@ -250,7 +274,9 @@ If you can see the crontab we've just configured, you're all good!
 
 To restore the history from a saved backup in the `~/.filtered-graphs` folder, simply run:
 
-> `./restore_from_backup.sh`
+> ```bash
+> ./restore_from_backup.sh
+> ```
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
 
@@ -271,3 +297,4 @@ All available backups will be listed and you will be prompted to select the one 
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
 - `backup_history.sh`: A script for making a backup of the `history.txt` file.
+- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
