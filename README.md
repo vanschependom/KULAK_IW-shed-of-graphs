@@ -48,6 +48,10 @@ Arne Claerhout
 - 4.4 _(30/03/24)_
   - Added docstrings to `filter_graphs.py`
   - Added supplementary illegal filter detection tests
+- 5.0 _(30/03/24)_
+  - Merged `stage4` with `main`
+  - Created `stage5` branch
+- 5.1 _(30/03/24)_
 
 ## Todo-list
 
@@ -67,13 +71,19 @@ Arne Claerhout
 
 ## Features
 
-### Graph generation
+### Graph filtering
 
 Generates graphs of a given order, that comply with a provided set of filters. Click [here](#using-the-graph-filter) to skip to the usage instructions for generating graphs.
 
 The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
 
-A history of all generated graphs is kept in the `history.txt` file. For more information about this file, click [here](#viewing-the-history).
+### History
+
+A history of all filtered graphs is kept in the `history.txt` file. For more information about this file, click [here](#history-1).
+
+### History backup
+
+We have provided a script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`. To make this script run every hour, you must [configure it](#configuring-automatic-history-backup) in the cron table.
 
 ## Usage
 
@@ -129,7 +139,7 @@ Run the following command from within the project folder to compile the Plantri 
 
 > `cc -o plantri -O4 ./plantri54/plantri.c`
 
-### Using the graph filter
+### Graph filter
 
 #### Defining filters
 
@@ -197,7 +207,7 @@ An example is shown below:
 
 > `./generate_graphs.sh 8 example_filter.json`
 
-#### Viewing the history
+### History
 
 After running the bash script correctly for the first time, a `history.txt` file will be created. If the file already exists, the Python script will append entries at the end of this file.
 
@@ -210,6 +220,24 @@ Each entry represents 20 processed graphs using the following format:
 > - `outputNumber:` the number of of graphs that passed the provided filter
 > - `filter:` the provided JSON filter, parsed as a string
 > - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
+
+#### Configuring automatic history backup
+
+Let's configure the hourly backup of the `history.txt` file. Start by editing the cron table using the following command:
+
+> `crontab -e`
+
+Add the following line to the cron table:
+
+> `0 * * * * /<working_dir>/backup_history.sh`
+
+In the command above, `<working_dir>` is the path to your current working directory of this project.
+
+Save and exit the cron table. Afterwards, verify that the crontab was succesfully installed by running the following command:
+
+> `crontab -l`
+
+If you can see the crontab we've just configured, you're all good!
 
 ## Contents
 
@@ -227,3 +255,4 @@ Each entry represents 20 processed graphs using the following format:
   A folder containing the necessary files for compiling the Plantri C program.
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
+- `backup_history.sh`: A script for making a backup of the `history.txt` file.
