@@ -6,8 +6,72 @@ import os
 import glob
 from datetime import datetime
 
+"""
+A method for checking if the given filters are valid.
 
-# A method for emptying a given folder
+Parameters
+----------
+filters : dict
+    A dictionary containing the filters in JSON format.
+
+Returns
+-------
+bool
+    True if the filters are valid, False otherwise.
+"""
+
+
+def are_valid_filters(filters):
+
+    try:
+
+        # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
+        for filterType, filterData in filters.items():
+
+            # Check if the filter type is 'only_degree' and if the type of degree is valid
+            if filterType == 'only_degree' and \
+                ((type(filterData['degree']) != int or type(filterData['degree']) != list)
+                 or len(filterData) != 1):
+                return False
+
+            # Check if the filter type is a type not equal to 'only_degree' but still valid
+            # and if the type of the degrees and amount are valid
+
+            elif (filterType in ['max_degree', 'min_degree', 'exact_degree']) \
+                and (len(filterData) != 2
+                     or (type(filterData['degree']) != int and type(filterData['degree']) != list)
+                     or type(filterData['amount']) != int):
+                return False
+
+            # If the type was not valid return False
+            elif (filterType not in ['max_degree', 'min_degree', 'exact_degree', 'only_degree']):
+                return False
+
+        # Only return true if all filters passed!!
+        else:
+            return True
+
+    except Exception as e:
+
+        # If we get an error somewhere (because, for example, it does not exist), return False
+        print(e)
+        return False
+
+
+"""
+A method for emptying a given directory.
+
+Parameters
+----------
+dir : str
+    The path to the directory to empty.
+
+Returns
+-------
+None
+"""
+
+
 def empty_directory(dir):
 
     # If the directory exists, empty it
@@ -16,34 +80,79 @@ def empty_directory(dir):
         os.remove(f)
 
 
-# A method for applying a given set of filters to a given graph
-#   @returns True if the graph passes the filter
+"""
+A method for checking if a given graph passes the given filters.
+
+Parameters
+----------
+graph : nx.Graph
+    A NetworkX graph object.
+filters : dict
+    A dictionary containing the filters in JSON format.
+
+Returns
+-------
+bool
+    True if the graph passes the filters, False otherwise.
+"""
+
+
 def passed_filters(graph, filters):
+
     # Iterate over keys (filter types) and values (filter data) in the filters JSON file (dictionary structure)
     for filterType, filterData in filters.items():
+
+        # Check if the filter type is 'only_degree'
         if filterType == 'only_degree':
+
             degree = filterData['degree']
-            if not all(graph.degree[node] == degree for node in graph.nodes):
-                return False
-        elif filterType == 'max_degree':
-            degree = filterData['degree']
-            amount = filterData['amount']
-            if sum(1 for node in graph.nodes if graph.degree[node] == degree) > amount:
-                return False
-        elif filterType == 'min_degree':
-            degree = filterData['degree']
-            amount = filterData['amount']
-            if sum(1 for node in graph.nodes if graph.degree[node] == degree) < amount:
-                return False
-        elif filterType == 'exact_degree':
+            for node in graph.nodes:
+                if type(degree) == int and graph.degree[node] != degree:
+                    return False
+                elif type(degree) == list and graph.degree[node] not in degree:
+                    return False
+
+        else:
+
             degree = filterData['degree']
             amount = filterData['amount']
-            if sum(1 for node in graph.nodes if graph.degree[node] == degree) != amount:
+
+            counter = 0
+
+            for node in graph.nodes:
+                if type(degree) == int and graph.degree[node] == degree:
+                    counter += 1
+                elif type(degree) == list and graph.degree[node] in degree:
+                    counter += 1
+
+            if filterType == 'min_degree' and counter < amount:
                 return False
+            elif filterType == 'max_degree' and counter > amount:
+                return False
+            elif filterType == 'exact_degree' and counter != amount:
+                return False
+
     return True
 
 
-# A method for exporting a graph as an image to a given directory, with a given index for the image name
+"""
+A method for exporting a given graph to an image file, in the given directory.
+
+Parameters
+----------
+G : nx.Graph
+    A NetworkX graph object.
+index : int
+    The index of the graph.
+dir : str
+    The path to the directory to export the graph image to.
+
+Returns
+-------
+None
+"""
+
+
 def export_graph_image(G, index, dir):
     # Export the graph to the output folder
     output_path = os.path.join(dir, f"graph_{index}.png")
@@ -52,7 +161,23 @@ def export_graph_image(G, index, dir):
     plt.close()
 
 
-# A method for processing graphs based on a given set of filters in JSON fomrat
+"""
+A method for processing a list of graphs, applying the given filters.
+
+Parameters
+----------
+graphs : list[str]
+    A list of graphs in Graph6 format.
+filters : dict
+    A dictionary containing the filters in JSON format.
+
+Returns
+-------
+list[str]
+    A list of Graph6 graphs that passed the filters.
+"""
+
+
 def process_graphs(graphs, filters):
 
     passed = []
@@ -83,7 +208,25 @@ def process_graphs(graphs, filters):
         return passed
 
 
-# A method for writing the history file
+"""
+A method for generating the contents of the history file.
+
+Parameters
+----------
+inputNumber : int
+    The number of input graphs.
+passed : list[str]
+    A list of Graph6 graphs that passed the filters.
+filters : dict
+    A dictionary containing the filters in JSON format.
+
+Returns
+-------
+list[list[str]]
+    A list of lists, where each inner list contains the contents of a history file entry.
+"""
+
+
 def generate_history(inputNumber, passed, filters):
 
     # The date for the history file
@@ -104,16 +247,16 @@ def generate_history(inputNumber, passed, filters):
         # Loop over all passed graphs
         while i < outputNumber:
             if i % 20 == 0 and i != 0:
-                output.append([date, str(inputNumber), str(outputNumber), 
+                output.append([date, str(inputNumber), str(outputNumber),
                                jsonString, ", ".join(graphsList20)])
                 graphsList20 = []
             graphsList20.append(passed[i])
             i += 1
 
         # add the remaining graphs
-        output.append([date, str(inputNumber), str(outputNumber), 
-                        jsonString, ", ".join(graphsList20)])
-        
+        output.append([date, str(inputNumber), str(outputNumber),
+                       jsonString, ", ".join(graphsList20)])
+
         return output
 
     # If no graphs passed the filters, write NA
@@ -121,8 +264,21 @@ def generate_history(inputNumber, passed, filters):
         return [[date, str(inputNumber), "0", jsonString, "NA"]]
 
 
-    
-def write_history(input):
+"""
+A method for writing the history to the file history.txt.
+
+Parameters
+----------
+history : list[list[str]]
+    A list of lists, where each inner list contains the contents of a history file entry.
+
+Returns
+-------
+None
+"""
+
+
+def write_history(history):
     # Check if the history file already exists
     try:
         # Make a new file with the name history.txt
@@ -130,36 +286,53 @@ def write_history(input):
     except:
         # If the above code gives an error, (because the file already exists) append to the file
         file = open("history.txt", "a")
-        
+
     # Write all the generated history
-    for i in input:
+    for i in history:
         file.write(i[0] + "\t" + i[1] + "\t" + i[2] +
-            "\t" + i[3] + "\t" + i[4] + "\n")
-    
+                   "\t" + i[3] + "\t" + i[4] + "\n")
+
     # Close the file
     file.close()
 
 
+"""
+The main method of the script.
+
+Parameters
+----------
+None
+
+Returns
+-------
+None
+"""
+
+
 if __name__ == "__main__":
 
-    
     # Read data from standard input (graphs in Graph6 format, generated by plantri)
     data = sys.stdin.read()
     # Get the path to the JSON file containing the filters (passed as command line argument)
     path_to_filter = sys.argv[1]
-    print([nx.complete_graph(4), nx.complete_graph(
-    5), nx.complete_graph(6), nx.complete_graph(7)])
 
     # Check if filter file exists
-    # If it does, load the json data in variable <filters>
     try:
+        # If it does, load the json data in variable <filters>
         with open(path_to_filter) as json_file:
             filters = json.load(json_file)
-    # The file doesn't exist yet.
-    # Print error to the user.
     except FileNotFoundError:
-        print("The filter file was not found. Please provide a valid path.")
-        sys.exit(1)
+        # throw an error if the file doesn't exist
+        raise ("The filter file does not exist. Please provide a valid filter.")
+    except:
+        # If we get a different error, this means that the json file is not valid
+        raise (
+            "The filter file doesn't have a valid format. Please provide a valid filter.")
+
+    # Check if the filter is valid
+    if not are_valid_filters(filters):
+        # Raise an exception if it isn't
+        raise ("The structure of the file is not valid. Please provide a valid filter.")
 
     # Check if the output directory exists, if not create it
     output_dir = "output"
@@ -175,3 +348,5 @@ if __name__ == "__main__":
 
     # Write history to history.txt
     write_history(generate_history(len(graphs), passedGraphs, filters))
+
+    sys.exit(0)

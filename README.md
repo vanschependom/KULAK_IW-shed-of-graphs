@@ -36,6 +36,18 @@ Arne Claerhout
 - 3.2 _(28/03/24)_
   - Split the history functionality into seperate methods `generate_history()` and `write_history()`
   - Added additional unit tests for filter and history functionality
+- 4.0 _(28/03/24)_
+  - Merged `stage3` with `main`
+  - Created `stage4` branch
+- 4.1 _(28/03/24)_
+  - Added rule expansion
+- 4.2 _(28/03/24)_
+  - Added supplementary unit tests for the rule expansion
+- 4.3 _(29/03/24)_
+  - Added illegal filter detection and corresponding tests
+- 4.4 _(30/03/24)_
+  - Added docstrings to `filter_graphs.py`
+  - Added supplementary illegal filter detection tests
 
 ## Todo-list
 
@@ -46,7 +58,7 @@ Arne Claerhout
   - [x] History functionality
 - [x] **Stage 3**: Unit testing
   - [x] Testing functionality
-- [ ] **Stage 4**: Rule expansion
+- [x] **Stage 4**: Rule expansion
 - [ ] **Stage 5**: History file backups
 - [ ] **Stage 6**: Bash script for multithreading
 - [ ] **Stage 7**: Exporting graph drawings
@@ -126,24 +138,24 @@ First, create a `filter.json` file, in which you specify which filters you want 
 Filters have a name and one or two parameters. An overview of allowed filters is given below:
 
 - **only_degree**
-  - The graph can **only** contain vertices with degree _\<degree\>_
+  - The graph can **only** contain vertices with degree(s) _\<degree\>_
   - Arguments:
-    - _degree_
+    - _degree_: either and integer or a list of integers
 - **min_degree**
   - The graph must contain **at least** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 - **max_degree**
   - The graph must contain **at most** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 - **exact_degree**
   - The graph must contain **exactly** _\<amount\>_ vertices with degree _\<degree\>_
   - Arguments:
-    - _degree_
-    - _amount_
+    - _degree_: either and integer or a list of integers
+    - _amount_: an integer
 
 An example for the filterfile in JSON-format is shown below:
 
@@ -158,6 +170,19 @@ An example for the filterfile in JSON-format is shown below:
 >   "min_degree": {
 >     "degree": 4,
 >     "amount": 5
+>   }
+> }
+> ```
+
+Another example - passing a list, instead of an integer, in the `degree` argument - is shown below:
+
+> **example_filter_2.json**
+>
+> ```json
+> {
+>   "exact": {
+>     "degree": [4, 5],
+>     "amount": 10
 >   }
 > }
 > ```
@@ -200,5 +225,5 @@ Each entry represents 20 processed graphs using the following format:
   A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
 - `/plantri54`:
   A folder containing the necessary files for compiling the Plantri C program.
-- `example_filter.json`:
-  A json file containing an example for how to use the filter format.
+- `example_filter.json` and `example_filter_2.json`:
+  JSON files containing an example for how to use the filter format.
