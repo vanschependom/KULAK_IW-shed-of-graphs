@@ -250,7 +250,7 @@ If you can see the crontab we've just configured, you're all good!
 
 To restore the history from a saved backup in the `~/.filtered-graphs` folder, simply run:
 
-> `restore_from_backup.sh`
+> `./restore_from_backup.sh`
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
 
