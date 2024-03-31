@@ -6,9 +6,15 @@ backup_dir="$HOME/.filtered-graphs"
 # Get a list of history backup files
 backup_files=("$backup_dir"/history_backup_*.txt)
 
+# Check if the backup directory exists
+if ! test -d /path/to/directory; then
+  echo "$backup_dir does not exist."
+  exit 1
+fi
+
 # Check if there are any backup files
-if [ ${#backup_files[@]} -eq 0 ]; then
-    echo "No history backup files found in the backup directory."
+if [ -z "$(ls -A $backup_dir)"  ]; then
+    echo "No history backup files found in $backup_dir."
     exit 1
 fi
 
