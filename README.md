@@ -61,6 +61,11 @@ Arne Claerhout
   - Added backup functionality (`history_backup.sh`)
   - Added restore functionality (`restore_from_backup.sh`)
   - Added instructions for all new features in `README.md`
+- 6.0 _(01/04/24)_
+  - Created `stage6` branch
+- 6.1 _(01/04/24)_
+  - Created the multithreading functionality
+  - Added an explanation to `README.md`
 
 </details>
 
@@ -75,7 +80,7 @@ Arne Claerhout
   - [x] Testing functionality
 - [x] **Stage 4**: Rule expansion
 - [x] **Stage 5**: History file backups
-- [ ] **Stage 6**: Bash script for multithreading
+- [X] **Stage 6**: Bash script for multithreading
 - [ ] **Stage 7**: Exporting graph drawings
 - [ ] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
@@ -238,6 +243,20 @@ An example is shown below:
 
 ```bash
 ./generate_graphs.sh 8 example_filter.json
+```
+
+##### Mulithreading 
+
+To use multithreading, you have to use the `generate_graphs.sh` script inside of the multithreading directory. As well as adding the desired amount of threads to be used. This is done like this:
+
+```bash
+./multithreading/generate_graphs.sh <number_of_threads> <plantri_order> <path_to_filter>
+```
+
+The same example but with multithreading is shown below:
+
+```bash
+./multithreading/generate_graphs.sh 4 8 example_filter.json
 ```
 
 ### History
