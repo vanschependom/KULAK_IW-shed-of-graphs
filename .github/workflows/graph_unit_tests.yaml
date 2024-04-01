@@ -20,4 +20,4 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pytest filter_graphs_test.py -v -s
+          pytest unit_tests.py -v -s

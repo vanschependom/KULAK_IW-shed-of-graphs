@@ -65,8 +65,14 @@ Arne Claerhout
   - Merged `stage5` with `main`
   - Created `stage6` branch
 - 6.1 _(01/04/24)_
-  - Created the multithreading functionality
+  - Created the multithreading functionality in seperate folder
   - Added an explanation to `README.md`
+- 6.2 _(01/04/24)_
+  - Refactored multithreading
+    - Removed seperate folder
+    - Added optional 3rd command line argument for `generate_graphs.sh` to include the number of threads
+  - Commented out the code responsible for exporting graphs
+    - This will be added back in a later stage
 
 </details>
 
@@ -90,17 +96,29 @@ Arne Claerhout
 
 ### Graph filtering
 
-Generates graphs of a given order, that comply with a provided set of filters. Click [here](#using-the-graph-filter) to skip to the usage instructions for generating graphs.
+Generate planar graphs of a given order, that comply with a provided set of filters. Click [here](#running-the-script) to skip to the usage instructions for generating graphs.
 
 The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
 
 #### Multithreading
 
-We also offer the ability to run the script multithreaded. Click [here](#multithreading-1) to skip to the instructions for multithreading,
+We also offer the ability to run the script multithreaded. Click [here](#multithreading-1) to skip to the instructions.
 
 ### History
 
-A history of all filtered graphs is kept in the `history.txt` file. For more information about this file, click [here](#history-1).
+A history of all filtered graphs is stored in local memory.
+
+After running the bash script correctly for the first time, a `history.txt` file will be created in the `write_history.py` script. If the file already exists, the Python script will append entries at the end of it.
+
+Each entry represents 20 processed graphs using the following format:
+
+> `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
+>
+> - `timestamp:` the current time in `%d/%m/%Y %H:%M:%S` format
+> - `inputNumber:` the number of graphs generated of the given order by Plantri
+> - `outputNumber:` the number of of graphs that passed the provided filter
+> - `filter:` the provided JSON filter, parsed as a string
+> - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 #### Backup
 
@@ -238,47 +256,27 @@ Another example - passing a list, instead of an integer, in the `degree` argumen
 
 #### Running the script
 
-Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the relative path to the `filter.json` file, that contains the filters to be applied:
+Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the relative path to the `filter.json` file, that contains the filters to be applied.
 
 ```bash
 ./generate_graphs.sh <plantri_order> <path_to_filter>
 ```
 
-An example is shown below:
+An example, is shown below. In this case, planar graphs of order 8 are generated.
 
 ```bash
-./generate_graphs.sh 8 example_filter.json
+./generate_graphs.sh 8 example_filter.json 4
 ```
 
 ##### Multithreading
 
-To use multithreading, you have to make use of `generate_graphs.sh` inside of the `multithreaded` directory. This script takes an additional command line argument, where you can provide the desired number of threads.
-
-The extended format now looks like this:
+To enable multithreaded execution, you can simply provide a 3rd command line argument, in which you specify the desired number of threads:
 
 ```bash
-./multithreaded/generate_graphs.sh <plantri_order> <path_to_filter> <number_of_threads>
-```
-
-A multithreaded example, using 4 threads, is shown below:
-
-```bash
-./multithreaded/generate_graphs.sh 8 example_filter.json 4
+./generate_graphs.sh <plantri_order> <path_to_filter> <number_of_threads>
 ```
 
 ### History
-
-After running the bash script correctly for the first time, a `history.txt` file will be created. If the file already exists, the Python script will append entries at the end of this file.
-
-Each entry represents 20 processed graphs using the following format:
-
-> `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
->
-> - `timestamp:` the current time in `%d/%m/%Y %H:%M:%S` format
-> - `inputNumber:` the number of graphs generated of the given order by Plantri
-> - `outputNumber:` the number of of graphs that passed the provided filter
-> - `filter:` the provided JSON filter, parsed as a string
-> - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 #### Configuring automatic history backup
 
@@ -314,21 +312,23 @@ To restore the history from a saved backup in the `~/.filtered-graphs` folder, s
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
 
-<!-- ## Contents
+## Contents
 
-- `requirements.txt`:
-  A file containing all Python dependencies that are required, used by the Python virtual environment.
-- `README.md`:
-  The file you're reading right now.
-- `.gitignore`:
-  A file containing rules about what not to push to the remote repository.
-- `generate_graphs.sh`:
-  A bash script for generating graphs.
-- `filter_graphs.py`:
-  A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
 - `/plantri54`:
   A folder containing the necessary files for compiling the Plantri C program.
+- `.gitignore`:
+  A file containing rules about what not to push to the remote repository.
+- `backup_history.sh`: A script for making a backup of the `history.txt` file.
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
-- `backup_history.sh`: A script for making a backup of the `history.txt` file.
-- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs` -->
+- `filter_graphs.py`:
+  A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
+- `generate_graphs.sh`:
+  A bash script for generating graphs.
+- `README.md`:
+  The file you're reading right now.
+- `requirements.txt`:
+  A file containing all Python dependencies that are required, used by the Python virtual environment.
+- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
+- `unit_tests.py`: A file containing all Pytest unit tests.
+- `write_history.py`: A Python script for writing the history to memory.
