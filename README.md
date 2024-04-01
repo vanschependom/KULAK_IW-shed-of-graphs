@@ -262,18 +262,20 @@ Run the bash script `generate_graphs.sh`, providing both the desired order of th
 ./generate_graphs.sh <plantri_order> <path_to_filter>
 ```
 
-An example, is shown below. In this case, planar graphs of order 8 are generated.
-
-```bash
-./generate_graphs.sh 8 example_filter.json 4
-```
-
 ##### Multithreading
 
 To enable multithreaded execution, you can simply provide a 3rd command line argument, in which you specify the desired number of threads:
 
 ```bash
 ./generate_graphs.sh <plantri_order> <path_to_filter> <number_of_threads>
+```
+
+##### Example
+
+In the example below, planar graphs of order 8 are generated, using 4 threads.
+
+```bash
+./generate_graphs.sh 8 example_filter.json 4
 ```
 
 ### History
