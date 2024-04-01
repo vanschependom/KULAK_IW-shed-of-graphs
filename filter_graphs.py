@@ -185,10 +185,10 @@ def process_graphs(graphs, filters, thread):
 
     # Iterate over the graphs and apply the filters
     for graph in graphs:
-        # Too many graphs
-        if i >= 200:
-            print("Processed 200 graphs. Exiting...")
-            break
+        # # Too many graphs
+        # if i >= 200:
+        #     print("Processed 200 graphs. Exiting...")
+        #     break
         if graph:
             # Decode Graph6 format to a NetworkX graph
             G = nx.from_graph6_bytes(graph.encode())
@@ -232,12 +232,10 @@ def thread_report(passed_graphs, inputNumber, output_file):
     # If the above code gives an error, (because the file doesn't exist) create the file
     file = open(output_file, "x+")
 
-    # If graphs passed the filters, write them to the file
+    # Write the number of input graphs
+    file.write(str(inputNumber) + "\t")
+
     if passed_graphs != None:
-
-        # Write the number of input graphs
-        file.write(str(inputNumber) + "\t")
-
         # Write the passed graphs list
         for i in passed_graphs:
             file.write(i + "\t")

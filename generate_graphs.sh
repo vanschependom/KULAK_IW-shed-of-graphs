@@ -1,4 +1,6 @@
 
+tic=`date +%s`
+
 order=$1
 filter_file=$2
 
@@ -45,4 +47,8 @@ done
 # run write_history.py
 python3 write_history.py $date $filter_file $nb_of_threads
 
+toc=$(date +%s)
+
 echo "Generated all graphs."
+
+times

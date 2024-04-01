@@ -124,21 +124,22 @@ if __name__ == "__main__":
         # get the first line of the file
         first_line = passed_graph_file.readline()
 
-        # check if the line is empty
-        if first_line != "":
+        # Split the first line into the input number and the passed graphs
+        threadInputNumber, * \
+            threadPassedGraphs = first_line.split("\t")
 
-            # Split the first line into the input number and the passed graphs
-            threadInputNumber, * \
-                threadPassedGraphs = first_line.split("\t")
+        # remove the last element of the list, because it is empty
+        threadPassedGraphs = threadPassedGraphs[:-1]
 
-            # Add the input number to the total input number
-            totalInputNumber += int(threadInputNumber)
+        # Add the input number to the total input number
+        totalInputNumber += int(threadInputNumber)
 
-            # Add the passed graphs to the total passed graphs
-            passedGraphs.extend(threadPassedGraphs)
+        if threadPassedGraphs != None:
+            # Add the passed graphs to the total list of passed graphs
+            passedGraphs += threadPassedGraphs
 
-            # Add the number of passed graphs to the total output number
-            totalOutputNumber += len(threadPassedGraphs)
+        # Add the number of passed graphs to the total output number
+        totalOutputNumber += len(threadPassedGraphs)
 
         # close the file
         passed_graph_file.close()
