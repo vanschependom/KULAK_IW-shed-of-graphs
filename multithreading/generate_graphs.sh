@@ -17,7 +17,7 @@ processes=()
 for ((i=0; i<threads; i++)); do
 	# the second argument should be the order of the graphs to be generated
 	# the third argument is the filter file
-	./plantri -p -g $2 $i/4 2>/dev/null | python3 multithreading/filter_graphs.py $3 $i &
+	./plantri -p -g $2 $i/$threads 2>/dev/null | python3 multithreading/filter_graphs.py $3 $i &
 	processes+=($!)
 done
 
