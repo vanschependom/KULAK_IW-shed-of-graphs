@@ -1,8 +1,0 @@
-01/04/2024 16:21:08	4680	0	{'only_degree': {'degree': 3}}	NA
-01/04/2024 16:21:09	9654	4	{'only_degree': {'degree': 3}}	ItPH?cH@g, IsT@H_H@g, IsP`_oK?w, ItT@GOD?w
-01/04/2024 16:21:09	8152	1	{'only_degree': {'degree': 3}}	ItP@GoH@g
-01/04/2024 16:21:08	9818	0	{'only_degree': {'degree': 3}}	NA
-01/04/2024 16:22:47	4680	0	{'only_degree': {'degree': 3}}	NA
-01/04/2024 16:22:48	9654	4	{'only_degree': {'degree': 3}}	ItPH?cH@g, IsT@H_H@g, IsP`_oK?w, ItT@GOD?w
-01/04/2024 16:22:48	8152	1	{'only_degree': {'degree': 3}}	ItP@GoH@g
-01/04/2024 16:22:48	9818	0	{'only_degree': {'degree': 3}}	NA
