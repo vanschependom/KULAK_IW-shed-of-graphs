@@ -14,7 +14,7 @@ Arne Claerhout
   </summary>
 
 - 0.0 _(22/04/24)_
-- Project creation
+  - Project creation
 - 1.0 _(22/04/24)_
   - Created `stage1` branch
   - Added instructions in `README.md`
@@ -71,6 +71,7 @@ Arne Claerhout
   - Refactored multithreading
     - Removed seperate folder
     - Added optional 3rd command line argument for `generate_graphs.sh` to include the number of threads
+    - Reworked the history functionality
   - Commented out the code responsible for exporting graphs
     - This will be added back in a later stage
 
