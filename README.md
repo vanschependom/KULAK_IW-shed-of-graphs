@@ -62,6 +62,7 @@ Arne Claerhout
   - Added restore functionality (`restore_from_backup.sh`)
   - Added instructions for all new features in `README.md`
 - 6.0 _(01/04/24)_
+  - Merged `stage5` with `main`
   - Created `stage6` branch
 - 6.1 _(01/04/24)_
   - Created the multithreading functionality
@@ -80,7 +81,7 @@ Arne Claerhout
   - [x] Testing functionality
 - [x] **Stage 4**: Rule expansion
 - [x] **Stage 5**: History file backups
-- [X] **Stage 6**: Bash script for multithreading
+- [x] **Stage 6**: Bash script for multithreading
 - [ ] **Stage 7**: Exporting graph drawings
 - [ ] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
@@ -92,6 +93,10 @@ Arne Claerhout
 Generates graphs of a given order, that comply with a provided set of filters. Click [here](#using-the-graph-filter) to skip to the usage instructions for generating graphs.
 
 The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
+
+#### Multithreading
+
+We also offer the ability to run the script multithreaded. Click [here](#multithreading-1) to skip to the instructions for multithreading,
 
 ### History
 
@@ -245,18 +250,20 @@ An example is shown below:
 ./generate_graphs.sh 8 example_filter.json
 ```
 
-##### Mulithreading 
+##### Multithreading
 
-To use multithreading, you have to use the `generate_graphs.sh` script inside of the multithreading directory. As well as adding the desired amount of threads to be used. This is done like this:
+To use multithreading, you have to make use of `generate_graphs.sh` inside of the `multithreaded` directory. This script takes an additional command line argument, where you can provide the desired number of threads.
+
+The extended format now looks like this:
 
 ```bash
-./multithreading/generate_graphs.sh <number_of_threads> <plantri_order> <path_to_filter>
+./multithreaded/generate_graphs.sh <plantri_order> <path_to_filter> <number_of_threads>
 ```
 
-The same example but with multithreading is shown below:
+A multithreaded example, using 4 threads, is shown below:
 
 ```bash
-./multithreading/generate_graphs.sh 4 8 example_filter.json
+./multithreaded/generate_graphs.sh 8 example_filter.json 4
 ```
 
 ### History
@@ -307,7 +314,7 @@ To restore the history from a saved backup in the `~/.filtered-graphs` folder, s
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
 
-## Contents
+<!-- ## Contents
 
 - `requirements.txt`:
   A file containing all Python dependencies that are required, used by the Python virtual environment.
@@ -324,4 +331,4 @@ All available backups will be listed and you will be prompted to select the one 
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
 - `backup_history.sh`: A script for making a backup of the `history.txt` file.
-- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
+- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs` -->
