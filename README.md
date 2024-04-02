@@ -304,15 +304,15 @@ python3 filter_graphs.py --help
 
 These arguments are also listed below:
 
-- **Required**:
-  - `filter`: The path to the JSON filter
-- **Optional**:
-  - `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
-  - `--format <export_format>`: The format you want the exported graphs to be in. This can be either _.jpg, .jpeg, .svg, .png_ or _.pdf_. If nothing is provided, the default format is _.png_.
-- **Should not be used** when running `filter_graphs.py` manually:
-  - `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
-  - `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
-  - `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+- `--filter <path_to_filter>`: The path to the JSON filter
+- `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
+- `--format <export_format>`: The format you want the exported graphs to be in. This can be either _jpg, jpeg, svg, png_ or _pdf_. If nothing is provided, the default format is _png_.
+
+**Should not be used** when running `filter_graphs.py` manually:
+
+- `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
+- `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
+- `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
 
 #### Example usage
 
@@ -321,7 +321,7 @@ Assume `<command_generating_graph6_graphs>` spits out a series of Graph6 graphs 
 The command below saves all graphs that pass the `example_filter.json` filter to `/output_directory` in _.svg_ format:
 
 ```bash
-<command_generating_graph6_graphs> | python3 filter_graphs.py example_filter.json --export output_directory --format svg
+<command_generating_graph6_graphs> | python3 filter_graphs.py --filter example_filter.json --export output_directory --format svg
 ```
 
 ### Automatic graph generation and filtering

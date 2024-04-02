@@ -41,7 +41,7 @@ def index():
 
     print(last_20_passed_graphs)
 
-    if second_last_line:
+    if second_last_line and second_last_line[0] == timestamp:
 
         # get the begin index for the second last line (at the back of the list)
         begin_index = len(second_last_line) - (20 - len(last_20_passed_graphs))

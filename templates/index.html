@@ -18,7 +18,7 @@
         {% for graph in passed_graphs %}
         <div class="graph">
             <p>{{ graph }}</p>
-            <img src="{{ url_for('static', filename= 'images/' + graph + '.svg') }}" style="width: 100px;height: 100px;" alt="">
+            <img src="{{ url_for('static', filename= 'images/' + graph + '.svg') }}" alt="">
         </div>
         {% endfor %}
     </div>
