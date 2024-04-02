@@ -86,7 +86,13 @@ Arne Claerhout
   - Merged `stage7` with `main`
   - Created `stage8` branch
 - 8.1 _(02/04/24)_
-  - Added basic webserver functionality using _Flask_
+  - Added basic webserver functionality
+    - Added flask code to `webserver.py`
+    - Added `index.html` to `/templates`
+- 8.2 _(02/04/24)_
+  - Extended web server functionality
+    - Added `style.css` to `/static/css`
+    - Added `/static/fonts`
 
 </details>
 
@@ -103,7 +109,7 @@ Arne Claerhout
 - [x] **Stage 5**: History file backups
 - [x] **Stage 6**: Bash script for multithreading
 - [x] **Stage 7**: Exporting graph drawings
-- [ ] **Stage 8**: Web server
+- [x] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
 
 ## Features
@@ -150,6 +156,10 @@ Click [here]() to skip to the command for running this script or [configure it i
 #### Backup restoration
 
 After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here]() for the instructions on restoring the history file.
+
+### Web server
+
+We provide a web server that displays the 20 last processed graphs. Click [here]() to skip to the instructions for starting the web server using _Flask_.
 
 ## Usage
 
@@ -380,6 +390,22 @@ To restore the history from a saved backup in the `~/.filtered-graphs` folder, s
 ```
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
+
+### Starting the web server
+
+Start by specifying that _Flask_ must run the `webserver.py` script:
+
+```bash
+export FLASK_APP=webserver
+```
+
+Now start the web server by simply running:
+
+```bash
+flask run
+```
+
+Great job, you can now visit the web server at on your localhost ([127.0.0.1:5000/index](http://127.0.0.1:5000/index))!
 
 ## Contents
 
