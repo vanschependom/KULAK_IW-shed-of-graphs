@@ -77,7 +77,11 @@ def empty_directory(dir):
     # If the directory exists, empty it
     files = glob.glob(os.path.join(dir, '*'))
     for f in files:
-        os.remove(f)
+        if os.path.isdir(f):
+            empty_directory(f)
+            os.rmdir(f)
+        else:
+            os.remove(f)
 
 
 """
