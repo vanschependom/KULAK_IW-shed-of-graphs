@@ -62,7 +62,6 @@ Arne Claerhout
   - Added restore functionality (`restore_from_backup.sh`)
   - Added instructions for all new features in `README.md`
 - 6.0 _(01/04/24)_
-  - Merged `stage5` with `main`
   - Created `stage6` branch
 - 6.1 _(01/04/24)_
   - Created the multithreading functionality in seperate folder
@@ -74,6 +73,15 @@ Arne Claerhout
     - Reworked the history functionality
   - Commented out the code responsible for exporting graphs
     - This will be added back in a later stage
+- 7.0 _(02/04/24)_
+  - Merged `stage5` with main
+  - Merged `stage6` with main
+  - Created `stage7` branch
+- 7.1 _(02/04/24)_
+  - Added export functionality
+- 7.2 _(02/04/24)_
+  - Reworked the `filter_graphs.py` structure
+  - Fully revamped `README.md`
 
 </details>
 
@@ -89,27 +97,34 @@ Arne Claerhout
 - [x] **Stage 4**: Rule expansion
 - [x] **Stage 5**: History file backups
 - [x] **Stage 6**: Bash script for multithreading
-- [ ] **Stage 7**: Exporting graph drawings
+- [x] **Stage 7**: Exporting graph drawings
 - [ ] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
 
 ## Features
 
-### Graph filtering
+### Manual graph filtering
 
-Generate planar graphs of a given order, that comply with a provided set of filters. Click [here](#running-the-script) to skip to the usage instructions for generating graphs.
+The Python script `filter_graphs.py` takes graphs from the standard input and filters them based on the provided filter in JSON format.
 
-The underlying logic is as follows: the bash script `generate_graphs.sh` generates all graphs of the given order using _Plantri_. This script then pipes its output - a bunch of _Graph6_ encoded graphs - to the Python script `filter_graphs.py`, which filters all these graphs based on the given criteria in the `filter.json` file.
+Run `python3 filter_graphs.py --help` to view all required and optional arguments, or click [here]() to skip to the detailed instructions on using this script.
+
+### Automatic graph generation and filtering
+
+We have provided a script, called `generate_graphs.sh`, that does two things:
+
+1. Generate planar graphs of a given degree using _Plantri_
+2. Filter these generated graphs with the above mentioned Python script, based on the JSON-format filter provided by the user.
+
+Click [here]() to skip to the usage instructions for this bash script.
 
 #### Multithreading
 
-We also offer the ability to run the script multithreaded. Click [here](#multithreading-1) to skip to the instructions.
+The automatic mode can also be run in multithreaded mode, to speed up graph generation. Click [here]() to skip to the usage instructions,
 
-### History
+### Filtered graph history
 
-A history of all filtered graphs is stored in local memory.
-
-After running the bash script correctly for the first time, a `history.txt` file will be created in the `write_history.py` script. If the file already exists, the Python script will append entries at the end of it.
+Each time a batch of graphs is filtered by `filter_graphs.py`, a history is kept of all graphs that passed the filter. This batch of graphs can either be manually piped to the Python script by the user themselves, or automatically by `generate_graphs.sh`.
 
 Each entry represents 20 processed graphs using the following format:
 
@@ -121,17 +136,23 @@ Each entry represents 20 processed graphs using the following format:
 > - `filter:` the provided JSON filter, parsed as a string
 > - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
-#### Backup
+#### (Automatic) history backup
 
-We have provided a script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`. To make this script run every hour, you must [configure it](#configuring-automatic-history-backup) in the cron table.
+We have provided a bash script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`.
 
-#### Restoring
+Click [here]() to skip to the command for running this script or [configure it in the cron table]() to make it run every hour.
 
-If you have configured the history backup, you can also restore `history.txt` from a saved backup in `~/.filtered_graphs` by running `restore_from_backup.sh`. Click [here](#restoring-the-history-from-a-backup) for the instructions on restoring the history file.
+#### Backup restoration
+
+After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here]() for the instructions on restoring the history file.
 
 ## Usage
 
 ### Installing Python dependencies in virtual environment
+
+In order to run `filter_graphs.py`, you need to install some dependencies. We recommend to create a new virtual Python environment. This way, all required packages are installed at once, using `requirements.txt`.
+
+Click on the package manager of your choice to expand the instructions:
 
 #### Pip
 
@@ -191,19 +212,19 @@ conda install --name shedofgraphs --file requirements.txt
 
 ### Installing Plantri
 
-Run the following command from within the project folder to compile the Plantri file:
+To use the `generate_graphs.sh` script for automatic planar graph generation and filtering, you will need to compile the Plantri C-program.
+
+Run the following command from within the project folder to run the compilation:
 
 ```bash
 cc -o plantri -O4 ./plantri54/plantri.c
 ```
 
-### Graph filter
+### Defining graph filters
 
-#### Defining filters
+First, create a `filter.json` file, in which you specify which filters you want to apply. You can name this file anything you want, just make sure to enter the right name in a [later step]().
 
-First, create a `filter.json` file, in which you specify which filters you want to apply to the graphs generated by _Plantri_. You can name this file anything you want, just make sure to enter the right name in a [later step](#running-the-script).
-
-Filters have a name and one or two parameters. An overview of allowed filters is given below:
+Filters have a name, as well as one or two arguments. An overview of allowed filters is given below:
 
 - **only_degree**
   - The graph can **only** contain vertices with degree(s) _\<degree\>_
@@ -255,9 +276,41 @@ Another example - passing a list, instead of an integer, in the `degree` argumen
 > }
 > ```
 
-#### Running the script
+### Manual graph filtering
 
-Run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the relative path to the `filter.json` file, that contains the filters to be applied.
+The Python script `graph_filter.py` filters graphs in Graph6 format - seperated by an end of line character (`\n`) - from the standard input.
+
+This script has a few arguments - both required and optional - which you can consult by running:
+
+```bash
+python3 filter_graphs.py --help
+```
+
+These arguments are also listed below:
+
+- **Required**:
+  - `filter`: The path to the JSON filter
+- **Optional**:
+  - `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
+  - `--format <export_format>`: The format you want the exported graphs to be in. This can be either _.jpg, .jpeg, .svg, .png_ or _.pdf_. If nothing is provided, the default format is _.png_.
+- **Should not be used** when running `filter_graphs.py` manually:
+  - `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
+  - `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
+  - `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+
+#### Example usage
+
+Assume `<command_generating_graph6_graphs>` spits out a series of Graph6 graphs seperated by an end of line character.
+
+The command below saves all graphs that pass the `example_filter.json` filter to `/output_directory` in _.svg_ format:
+
+```bash
+<command_generating_graph6_graphs> | python3 filter_graphs.py example_filter.json --export output_directory --format svg
+```
+
+### Automatic graph generation and filtering
+
+To generate planar graphs and filter them automatically, run the bash script `generate_graphs.sh`, providing both the desired order of the graphs to be generated, as well as the relative path to the `filter.json` file, that contains the filters to be applied:
 
 ```bash
 ./generate_graphs.sh <plantri_order> <path_to_filter>
@@ -280,6 +333,14 @@ In the example below, planar graphs of order 8 are generated, using 4 threads.
 ```
 
 ### History
+
+#### Running the backup script
+
+Run the following command to make a backup of the current `history.txt` file:
+
+```bash
+./backup_history.sh
+```
 
 #### Configuring automatic history backup
 
@@ -325,13 +386,13 @@ All available backups will be listed and you will be prompted to select the one 
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
 - `filter_graphs.py`:
-  A Python script for filtering graphs. This file is ran by the bash script that generates graphs.
+  A Python script for filtering graphs.
 - `generate_graphs.sh`:
-  A bash script for generating graphs.
+  A bash script for generating and filtering planar graphs.
 - `README.md`:
   The file you're reading right now.
 - `requirements.txt`:
-  A file containing all Python dependencies that are required, used by the Python virtual environment.
+  A file containing all Python dependencies that are required.
 - `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
 - `unit_tests.py`: A file containing all Pytest unit tests.
 - `write_history.py`: A Python script for writing the history to memory.
