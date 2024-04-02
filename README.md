@@ -93,6 +93,7 @@ Arne Claerhout
   - Extended web server functionality
     - Added `style.css` to `/static/css`
     - Added `/static/fonts`
+    - Added feature for displaying images (not pretty yet!)
 
 </details>
 
