@@ -116,7 +116,7 @@ if __name__ == "__main__":
     passedGraphs = []
 
     # loop over all the output files
-    for i in range(1, int(thread_number)+1):
+    for i in range(0, int(thread_number)):
 
         # read the data of the output file, characterised by the generation date
         passed_graph_file = open(f"{generation_date}_thread{i}.txt", "r")

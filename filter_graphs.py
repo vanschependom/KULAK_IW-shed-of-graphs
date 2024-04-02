@@ -423,7 +423,7 @@ if __name__ == "__main__":
         thread_report(passedGraphs, len(graphs), output_file)
 
     # If running in manual mode, generate the history file
-    else:
+    elif cmdln_args.filter:
 
         history = generate_history(inputNumber=len(
             graphs), passed=passedGraphs, filters=filters)

@@ -39,15 +39,19 @@ def index():
     # create a string of passed graphs, seperated by a end of line
     passed_graphs_string = last_line[4].replace(',', '\n')
 
+    print(passed_graphs_string)
+
     # Export the passed graphs to the export_dir
     process = subprocess.Popen(
         f'echo "{
-            passed_graphs_string}" | python3 filter_graphs.py allow_all.json --export static/images --format svg',
+            passed_graphs_string}" | python3 filter_graphs.py --export static/images --format svg',
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
     stdout, stderr = process.communicate()
+    print(stdout.decode('utf-8'))
+    print(stderr.decode('utf-8'))
 
     # Render the HTML template
     return render_template('index.html', timestamp=timestamp, input_number=input_number, output_number=output_number, filter_str=filter_str, passed_graphs=passed_graphs)
