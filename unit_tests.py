@@ -199,7 +199,7 @@ def test_history_1():
     assert generate_history(10, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                                                           "10", str(len(test_graphs)), str(
                                                               filters),
-                                                           ", ".join(test_graphs)]]
+                                                           "\t".join(test_graphs)]]
 
 
 def test_history_2():
@@ -216,7 +216,7 @@ def test_history_2():
     assert generate_history(85, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                                                           "85", str(len(test_graphs)), str(
                                                               filters),
-                                                           ", ".join(test_graphs)]]
+                                                           "\t".join(test_graphs)]]
 
 
 def test_history_3():
@@ -239,4 +239,4 @@ def test_history_3():
                                                            [datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                                                             "120", str(len(test_graphs)), str(
                                                                 filters),
-                                                            ", ".join(test_graphs[20:])]]
+                                                            "\t".join(test_graphs[20:])]]
