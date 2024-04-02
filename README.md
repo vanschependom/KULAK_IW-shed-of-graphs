@@ -62,7 +62,6 @@ Arne Claerhout
   - Added restore functionality (`restore_from_backup.sh`)
   - Added instructions for all new features in `README.md`
 - 6.0 _(01/04/24)_
-  - Merged `stage5` with `main`
   - Created `stage6` branch
 - 6.1 _(01/04/24)_
   - Created the multithreading functionality in seperate folder
@@ -74,6 +73,10 @@ Arne Claerhout
     - Reworked the history functionality
   - Commented out the code responsible for exporting graphs
     - This will be added back in a later stage
+- 7.0 _(02/04/24)_
+  - Merged `stage5` with main
+  - Merged `stage6` with main
+  - Created `stage7` branch
 
 </details>
 
