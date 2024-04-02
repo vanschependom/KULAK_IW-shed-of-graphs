@@ -34,7 +34,7 @@ date=$(date +'%Y-%m-%d-%H-%M-%S')
 
 # run the plantri command for each thread
 for ((i=0; i<nb_of_threads; i++)); do
-    ./plantri -p -g $order $i/$nb_of_threads 2>/dev/null | python3 filter_graphs.py $filter_file --thread $i --date $date &
+    ./plantri -p -g $order $i/$nb_of_threads 2>/dev/null | python3 filter_graphs.py $filter_file --thread $i --date $date --automatic &
     # run the command in the background and save the process id
     processes+=($!)
 done

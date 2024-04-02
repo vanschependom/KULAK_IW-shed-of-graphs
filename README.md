@@ -92,7 +92,7 @@ Arne Claerhout
 - [x] **Stage 4**: Rule expansion
 - [x] **Stage 5**: History file backups
 - [x] **Stage 6**: Bash script for multithreading
-- [ ] **Stage 7**: Exporting graph drawings
+- [x] **Stage 7**: Exporting graph drawings
 - [ ] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
 
