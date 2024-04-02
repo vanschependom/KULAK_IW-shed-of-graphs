@@ -2,4 +2,10 @@
   background-color: rgb(29, 29, 46);
   color: white;
   font-family: "JetBrains Mono", monospace;
+}
+
+#graph-wrapper {
+  display: grid;
+  grid-template-columns: auto(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: auto(auto-fill, minmax(300px, 1fr));
 }/*# sourceMappingURL=style.css.map */
