@@ -16,6 +16,12 @@ def index():
     # Read the last line from history.txt
     with open('history.txt', 'r') as file:
         lines = file.readlines()
+
+        # no history
+        if len(lines) == 0:
+            return render_template('index.html', timestamp='', input_number='', output_number='', filter_str='', passed_graphs=[])
+
+        # last line = 20 last graphs
         last_line = lines[-1].strip().split('\t')
 
     # Extract information from the last line (20 last graphs)
