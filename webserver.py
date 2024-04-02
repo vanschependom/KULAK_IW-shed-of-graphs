@@ -1,5 +1,5 @@
 import subprocess
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, request, url_for
 import sys
 
 app = Flask(__name__)
@@ -10,6 +10,39 @@ def home():
     # redirect to the index page
     print('Redirecting to the index page...')
     return redirect(url_for('index'))
+
+
+@app.route('/generate', methods=['POST', 'GET'])
+def generate():
+    if request.method == 'POST':
+
+        order = request.form['order']
+        filters = request.form['filter']
+
+        # create a filter JSON file from filters variable
+        with open('webserver_filters.json', 'w') as file:
+            file.write(filters)
+
+        # Export the passed graphs to the export_dir
+        process = subprocess.Popen(
+            [
+                './generate_graphs.sh',
+                order,
+                'webserver_filters.json'
+            ],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+
+        stdout, stderr = process.communicate()
+        sys.stdout.buffer.write(stdout)
+        sys.stderr.buffer.write(stderr)
+
+        # delete the filter JSON file
+        subprocess.run(['rm', 'webserver_filters.json'])
+
+        return redirect(url_for('index'))
 
 
 @app.route('/index')

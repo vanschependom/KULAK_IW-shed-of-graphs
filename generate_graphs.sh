@@ -1,3 +1,5 @@
+#!/bin/bash
+
 order=$1
 filter_file=$2
 

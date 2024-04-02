@@ -2,6 +2,9 @@ html {
   background-color: #0d1117;
   color: white;
   margin: 7%;
+  * {
+    font-family: sans-serif;
+  }
 }
 
 #graph-wrapper {
@@ -20,5 +23,26 @@ html {
       width: 100%;
       height: auto;
     }
+  }
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  * {
+    display: block;
+    margin-top: 5px;
+  }
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #30363d;
+    width: 100%;
+    background-color: #0d1117;
+    color: white;
+    padding: 10px 20px;
   }
 }

@@ -3,6 +3,9 @@ html {
   color: white;
   margin: 7%;
 }
+html * {
+  font-family: sans-serif;
+}
 
 #graph-wrapper {
   display: grid;
@@ -21,4 +24,25 @@ html {
 #graph-wrapper .graph img {
   width: 100%;
   height: auto;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+}
+form * {
+  display: block;
+  margin-top: 5px;
+}
+form input,
+form textarea,
+form button {
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  width: 100%;
+  background-color: #0d1117;
+  color: white;
+  padding: 10px 20px;
 }/*# sourceMappingURL=style.css.map */
