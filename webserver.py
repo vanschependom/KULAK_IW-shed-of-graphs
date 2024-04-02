@@ -1,4 +1,6 @@
+import subprocess
 from flask import Flask, render_template, redirect, url_for
+import filter_graphs
 
 app = Flask(__name__)
 
@@ -30,6 +32,22 @@ def index():
     output_number = last_line[2]
     filter_str = last_line[3]
     passed_graphs = last_line[4].split(',')
+
+    # remove unnecessary characters
+    passed_graphs = [graph.replace(' ', '') for graph in passed_graphs]
+
+    # create a string of passed graphs, seperated by a end of line
+    passed_graphs_string = last_line[4].replace(',', '\n')
+
+    # Export the passed graphs to the export_dir
+    process = subprocess.Popen(
+        f'echo "{
+            passed_graphs_string}" | python3 filter_graphs.py allow_all.json --export static/images --format svg',
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    stdout, stderr = process.communicate()
 
     # Render the HTML template
     return render_template('index.html', timestamp=timestamp, input_number=input_number, output_number=output_number, filter_str=filter_str, passed_graphs=passed_graphs)

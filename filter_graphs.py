@@ -159,11 +159,11 @@ None
 """
 
 
-def export_graph_image(G, index, dir, image_format):
+def export_graph_image(G, name, dir, image_format):
     if image_format not in ["png", "jpg", "jpeg", "pdf", "svg"]:
         image_format = "png"
     # Export the graph to the output folder
-    output_path = os.path.join(dir, f"graph_{index}.{image_format}")
+    output_path = os.path.join(dir, f"{name}.{image_format}")
     nx.draw_planar(G, with_labels=True)  # draw the graph
     plt.savefig(output_path)  # save the graph
     plt.close()
@@ -203,8 +203,11 @@ def process_graphs(graphs, filters, thread, output_dir=None, image_format="png")
         # Check if the graph is not empty
         if graph:
 
+            # strip the graph of any whitespace
+            graph = graph.strip()
+
             # Decode Graph6 format to a NetworkX graph
-            G = nx.from_graph6_bytes(graph.encode())
+            G = nx.from_graph6_bytes(graph.strip().encode())
 
             # Check if the graph passes the filters
             if passed_filters(G, filters):
@@ -215,9 +218,9 @@ def process_graphs(graphs, filters, thread, output_dir=None, image_format="png")
                 i += 1
 
                 # Check if the --export flag is provided
-                if output_dir:
+                if output_dir != None:
                     # export the graph image
-                    export_graph_image(G, i, output_dir, image_format)
+                    export_graph_image(G, graph, output_dir, image_format)
 
     # Print the number of graphs that passed the filters
     if i == 0:

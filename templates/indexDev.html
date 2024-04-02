@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processed Graphs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <link href="{{ url_for('static', filename= 'fonts/font.ttf') }}" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="../static/fonts/font.ttf" rel='stylesheet' type='text/css'>
 </head>
 <body>
     <h1>Last Processed Graphs</h1>
@@ -15,12 +15,7 @@
     <h3>Filter: {{ filter_str }}</h3>
     <h3>Passed Graphs:</h3>
     <div id="graph-wrapper">
-        {% for graph in passed_graphs %}
-        <div class="graph">
-            <p>{{ graph }}</p>
-            <img src="{{ url_for('static', filename= 'images/' + graph + '.svg') }}" style="width: 100px;height: 100px;" alt="">
-        </div>
-        {% endfor %}
+        <div class="graph">{{ graph }}</div>
     </div>
 </body>
 </html>
