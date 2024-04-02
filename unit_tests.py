@@ -235,7 +235,7 @@ def test_history_3():
     assert generate_history(120, test_graphs, filters) == [[datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                                                             "120", str(len(test_graphs)), str(
                                                                 filters),
-                                                            ", ".join(test_graphs[:20])],
+                                                            "\t".join(test_graphs[:20])],
                                                            [datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                                                             "120", str(len(test_graphs)), str(
                                                                 filters),
