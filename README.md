@@ -411,6 +411,8 @@ Great job, you can now visit the web server at on your localhost ([127.0.0.1:500
 
 - `/plantri54`:
   A folder containing the necessary files for compiling the Plantri C program.
+- `/static`: A folder containing the necessary files for styling the web server index page.
+- `/templates`: A folder containing the HTML template of the web server.
 - `.gitignore`:
   A file containing rules about what not to push to the remote repository.
 - `backup_history.sh`: A script for making a backup of the `history.txt` file.
@@ -426,4 +428,5 @@ Great job, you can now visit the web server at on your localhost ([127.0.0.1:500
   A file containing all Python dependencies that are required.
 - `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
 - `unit_tests.py`: A file containing all Pytest unit tests.
+- `webserver.py`: A Python script with the necessary code for running the Flask webserver.
 - `write_history.py`: A Python script for writing the history to memory.
