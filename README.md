@@ -74,14 +74,19 @@ Arne Claerhout
   - Commented out the code responsible for exporting graphs
     - This will be added back in a later stage
 - 7.0 _(02/04/24)_
-  - Merged `stage5` with main
-  - Merged `stage6` with main
+  - Merged `stage5` with `main`
+  - Merged `stage6` with `main`
   - Created `stage7` branch
 - 7.1 _(02/04/24)_
   - Added export functionality
 - 7.2 _(02/04/24)_
   - Reworked the `filter_graphs.py` structure
   - Fully revamped `README.md`
+- 8.0 _(02/04/24)_
+  - Merged `stage7` with `main`
+  - Created `stage8` branch
+- 8.1 _(02/04/24)_
+  - Added basic webserver functionality using _Flask_
 
 </details>
 

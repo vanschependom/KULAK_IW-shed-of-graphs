@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Graphs</title>
+</head>
+<body>
+    <h1>Last Processed Graphs</h1>
+    <h2>Timestamp: {{ timestamp }}</h2>
+    <h3>Input Number: {{ input_number }}</h3>
+    <h3>Output Number: {{ output_number }}</h3>
+    <h3>Filter: {{ filter_str }}</h3>
+    <h3>Passed Graphs:</h3>
+    <ul>
+        {% for graph in passed_graphs %}
+        <li>{{ graph }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
