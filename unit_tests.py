@@ -1,5 +1,6 @@
 import networkx as nx
 from filter_graphs import *
+from write_history import *
 
 # generate graphs suitable for testing the process_graphs method
 test_graphs = [nx.complete_graph(4), nx.complete_graph(

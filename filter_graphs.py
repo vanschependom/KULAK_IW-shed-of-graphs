@@ -30,7 +30,7 @@ def are_valid_filters(filters):
 
             # Check if the filter type is 'only_degree' and if the type of degree is valid
             if filterType == 'only_degree' and \
-                ((type(filterData['degree']) != int or type(filterData['degree']) != list)
+                ((type(filterData['degree']) != int and type(filterData['degree']) != list)
                  or len(filterData) != 1):
                 return False
 
@@ -77,7 +77,11 @@ def empty_directory(dir):
     # If the directory exists, empty it
     files = glob.glob(os.path.join(dir, '*'))
     for f in files:
-        os.remove(f)
+        if os.path.isdir(f):
+            empty_directory(f)
+            os.rmdir(f)
+        else:
+            os.remove(f)
 
 
 """
@@ -178,17 +182,17 @@ list[str]
 """
 
 
-def process_graphs(graphs, filters):
+def process_graphs(graphs, filters, thread):
 
     passed = []
     i = 0
 
     # Iterate over the graphs and apply the filters
     for graph in graphs:
-        # Too many graphs
-        if i >= 200:
-            print("Processed 200 graphs. Exiting...")
-            break
+        # # Too many graphs
+        # if i >= 200:
+        #     print("Processed 200 graphs. Exiting...")
+        #     break
         if graph:
             # Decode Graph6 format to a NetworkX graph
             G = nx.from_graph6_bytes(graph.encode())
@@ -197,80 +201,29 @@ def process_graphs(graphs, filters):
                 # The output
                 passed.append(graph)
                 i += 1
-                # export the graph image
-                export_graph_image(G, i, output_dir)
+                # # export the graph image
+                # export_graph_image(G, i, output_dir)
 
     if i == 0:
-        print("No graphs passed the filters.")
+        print(f"No graphs passed the filters on tread {thread}.")
         return None
     else:
-        print(f"{i} graphs passed the filters.")
+        print(f"{i} graphs passed the filters on tread {thread}.")
         return passed
 
 
 """
-A method for generating the contents of the history file.
+A method for writing the passed graphs for this thread to the file <date>.txt.
+The date is used as a unique identifier for the generation of multithreaded graphs.
 
 Parameters
 ----------
+passed_graphs : list[str]
+    A list of Graph6 graphs that passed the filters.
 inputNumber : int
     The number of input graphs.
-passed : list[str]
-    A list of Graph6 graphs that passed the filters.
-filters : dict
-    A dictionary containing the filters in JSON format.
-
-Returns
--------
-list[list[str]]
-    A list of lists, where each inner list contains the contents of a history file entry.
-"""
-
-
-def generate_history(inputNumber, passed, filters):
-
-    # The date for the history file
-    date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    # The filter for the history file
-    jsonString = str(filters)
-
-    # If graphs passed the filters, write them to the file
-    if passed != None:
-        output = []
-
-        # The output and input numbers for the history file
-        outputNumber = len(passed)
-
-        i = 0
-        graphsList20 = []
-
-        # Loop over all passed graphs
-        while i < outputNumber:
-            if i % 20 == 0 and i != 0:
-                output.append([date, str(inputNumber), str(outputNumber),
-                               jsonString, ", ".join(graphsList20)])
-                graphsList20 = []
-            graphsList20.append(passed[i])
-            i += 1
-
-        # add the remaining graphs
-        output.append([date, str(inputNumber), str(outputNumber),
-                       jsonString, ", ".join(graphsList20)])
-
-        return output
-
-    # If no graphs passed the filters, write NA
-    else:
-        return [[date, str(inputNumber), "0", jsonString, "NA"]]
-
-
-"""
-A method for writing the history to the file history.txt.
-
-Parameters
-----------
-history : list[list[str]]
-    A list of lists, where each inner list contains the contents of a history file entry.
+output_file : str
+    The path to the output file.
 
 Returns
 -------
@@ -278,19 +231,18 @@ None
 """
 
 
-def write_history(history):
-    # Check if the history file already exists
-    try:
-        # Make a new file with the name history.txt
-        file = open("history.txt", "x+")
-    except:
-        # If the above code gives an error, (because the file already exists) append to the file
-        file = open("history.txt", "a")
+def thread_report(passed_graphs, inputNumber, output_file):
 
-    # Write all the generated history
-    for i in history:
-        file.write(i[0] + "\t" + i[1] + "\t" + i[2] +
-                   "\t" + i[3] + "\t" + i[4] + "\n")
+    # If the above code gives an error, (because the file doesn't exist) create the file
+    file = open(output_file, "x+")
+
+    # Write the number of input graphs
+    file.write(str(inputNumber) + "\t")
+
+    if passed_graphs != None:
+        # Write the passed graphs list
+        for i in passed_graphs:
+            file.write(i + "\t")
 
     # Close the file
     file.close()
@@ -315,15 +267,21 @@ if __name__ == "__main__":
     data = sys.stdin.read()
     # Get the path to the JSON file containing the filters (passed as command line argument)
     path_to_filter = sys.argv[1]
+    # Get the date
+    generation_date = sys.argv[2]
+    # Get the thread number
+    thread = sys.argv[3]
 
     # Check if filter file exists
     try:
         # If it does, load the json data in variable <filters>
         with open(path_to_filter) as json_file:
             filters = json.load(json_file)
+
     except FileNotFoundError:
         # throw an error if the file doesn't exist
         raise ("The filter file does not exist. Please provide a valid filter.")
+
     except:
         # If we get a different error, this means that the json file is not valid
         raise (
@@ -334,19 +292,20 @@ if __name__ == "__main__":
         # Raise an exception if it isn't
         raise ("The structure of the file is not valid. Please provide a valid filter.")
 
-    # Check if the output directory exists, if not create it
-    output_dir = "output"
-    os.makedirs("output", exist_ok=True)
+    # # Check if the output directory exists, if not create it
+    # output_dir = "output"
+    # os.makedirs("output", exist_ok=True)
 
-    # Empty the output directory
-    empty_directory(output_dir)
+    # # Empty the output directory
+    # empty_directory(output_dir)
 
     # Split the data (graphs) by new line
     graphs = data.split('\n')
 
-    passedGraphs = process_graphs(graphs, filters)
+    passedGraphs = process_graphs(graphs, filters, thread)
 
-    # Write history to history.txt
-    write_history(generate_history(len(graphs), passedGraphs, filters))
+    # write the passed graphs to the output file
+    thread_report(passedGraphs, len(graphs), generation_date +
+                  f"_thread{thread}.txt")
 
     sys.exit(0)
