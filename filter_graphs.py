@@ -159,10 +159,12 @@ None
 
 
 def export_graph_image(G, index, dir, image_format):
+    if image_format not in ["png", "jpg", "jpeg", "pdf", "svg"]:
+        image_format = "png"
     # Export the graph to the output folder
-    output_path = os.path.join(dir, f"graph_{index}.png")
+    output_path = os.path.join(dir, f"graph_{index}.{image_format}")
     nx.draw_planar(G, with_labels=True)  # draw the graph
-    plt.savefig(output_path, format=image_format)  # save the graph
+    plt.savefig(output_path)  # save the graph
     plt.close()
 
 
@@ -179,6 +181,8 @@ thread : int
     The number of the thread.
 output_dir : str
     The path to the output directory.
+image_format : str
+    The format for the exported images.
 
 Returns
 -------
@@ -208,7 +212,7 @@ def process_graphs(graphs, filters, thread, output_dir=None, image_format="png")
                 i += 1
                 if output_dir:
                     # export the graph image
-                    export_graph_image(G, i, output_dir)
+                    export_graph_image(G, i, output_dir, image_format)
 
     if i == 0:
         print(f"No graphs passed the filters on tread {thread}.")
@@ -239,8 +243,15 @@ None
 
 def thread_report(passed_graphs, inputNumber, output_file):
 
-    # If the above code gives an error, (because the file doesn't exist) create the file
-    file = open(output_file, "x+")
+    try:
+
+        # If the file already exists, append to the file
+        file = open(output_file, "a")
+
+    except:
+
+        # If the above code gives an error, (because the file doesn't exist) create the file
+        file = open(output_file, "x+")
 
     # Write the number of input graphs
     file.write(str(inputNumber) + "\t")
@@ -285,8 +296,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    print(args)
-
     if args.thread:
         thread = args.thread
     else:
@@ -323,21 +332,29 @@ if __name__ == "__main__":
     # Check if export flag is provided
     if args.export:
 
+        # Create the export directory if it doesn't exist and empty it
         os.makedirs(args.export, exist_ok=True)
         empty_directory(args.export)
+
+        print(args.format)
+
         passedGraphs = process_graphs(
             graphs, filters, thread, args.export, args.format)
 
     else:
 
+        # Process the graphs and apply the filters without exporting the images
         passedGraphs = process_graphs(graphs, filters, thread)
 
-    if args.date:
-        output_file = args.date + f"_thread{thread}.txt"
-    else:
-        output_file = "output.txt"
+    if not args.export:
 
-    # write the passed graphs to the output file
-    thread_report(passedGraphs, len(graphs), output_file)
+        # If the date flag is provided, use it as the output file name
+        if args.date:
+            output_file = args.date + f"_thread{thread}.txt"
+        else:
+            output_file = "output.txt"
+
+        # write the passed graphs to the output file
+        thread_report(passedGraphs, len(graphs), output_file)
 
     sys.exit(0)
