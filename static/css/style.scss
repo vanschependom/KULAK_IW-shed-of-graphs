@@ -1,6 +1,7 @@
 html {
   background-color: #0d1117;
   color: white;
+  margin: 7%;
 }
 
 #graph-wrapper {
@@ -12,7 +13,7 @@ html {
     border-radius: 5px;
     text-align: center;
     border: 1px solid #30363d;
-    p {
+    .graph-info {
       padding: 20px;
     }
     img {
