@@ -302,7 +302,7 @@ This script has a few arguments - both required and optional - which you can con
 python3 filter_graphs.py --help
 ```
 
-These arguments are also listed below:
+The following arguments can be provided when running manually:
 
 - `--filter <path_to_filter>`: The path to the JSON filter
 - `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
@@ -313,6 +313,8 @@ These arguments are also listed below:
 - `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
 - `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
 - `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+
+The last three arguments should only be used by `generate_graphs.sh` - possibly running multithreaded.
 
 #### Example usage
 

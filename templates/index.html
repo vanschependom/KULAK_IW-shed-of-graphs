@@ -6,30 +6,35 @@
     <title>Shed of Graphs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <link href="{{ url_for('static', filename= 'fonts/font.ttf') }}" rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="{{ url_for('static', filename= 'assets/favicon.png') }}" type="image/x-icon">
 </head>
 <body>
-    <h1>Shed of Graphs</h1>
-    <p>Vincent Van Schependom & Arne Claerhout</p>
-    <h2>Generate planar graphs</h2>
-    <form action="{{ url_for('generate') }}" method="post">
-        <input type="number" name="order" placeholder="Order" id="order">
-        <textarea name="filter" id="filters" cols="30" rows="10" placeholder="Enter JSON filter here"></textarea>
-        <input type="submit" value="Generate">
-    </form>
-    <h2>Last Processed Graphs</h2>
-    <div id="graph-wrapper">
-        {% for graph in last_20 %}
-        <div class="graph">
-            <div class="graph-info">
-                <h3>{{ graph[4] }}</h3>
-                <p>{{ graph[0] }}</p>
-                <p>{{ graph[1] }}</p>
-                <p>{{ graph[2] }}</p>
-                <p>{{ graph[3] }}</p>
+    <header>
+        <img id="logo" src="{{ url_for('static', filename= 'assets/logo.svg') }}" alt="">
+        <p>Vincent Van Schependom & Arne Claerhout</p>
+    </header>
+    <main>
+        <h2>Generate planar graphs</h2>
+        <form action="{{ url_for('generate') }}" method="post">
+            <input required type="number" name="order" placeholder="Order" id="order">
+            <input required type="number" name="threads" placeholder="Number of threads to be used" id="threads">
+            <textarea required name="filter" id="filters" cols="30" rows="10" placeholder="JSON filter"></textarea>
+            <input type="submit" value="Generate">
+        </form>
+        <h2>Last Processed Graphs</h2>
+        <div id="graph-wrapper">
+            {% for graph in last_20 %}
+            <div class="graph">
+                <div class="graph-info">
+                    <h3>{{ graph[4] }}</h3>
+                    <p>{{ graph[0] }}</p>
+                    <p>{{ graph[1] }} -> {{ graph[2] }}</p>
+                    <p>{{ graph[3] }}</p>
+                </div>
+                <img src="{{ url_for('static', filename= 'images/' + graph[4] + '.svg') }}" alt="">
             </div>
-            <img src="{{ url_for('static', filename= 'images/' + graph[4] + '.svg') }}" alt="">
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    </main>
 </body>
 </html>

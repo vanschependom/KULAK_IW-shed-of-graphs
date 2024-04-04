@@ -164,7 +164,9 @@ def export_graph_image(G, name, dir, image_format):
         image_format = "png"
     # Export the graph to the output folder
     output_path = os.path.join(dir, f"{name}.{image_format}")
-    nx.draw_planar(G, with_labels=True)  # draw the graph
+    nx.draw_planar(G, with_labels=True, node_color="#00BDFF",
+                   # draw the graph
+                   node_size=500, width=1, edge_color="#161b22", font_color="#161b22", font_weight="bold")
     plt.savefig(output_path)  # save the graph
     plt.close()
 

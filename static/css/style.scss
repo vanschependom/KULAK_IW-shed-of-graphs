@@ -1,9 +1,46 @@
-html {
-  background-color: #0d1117;
+$bgnd: #161b22;
+$bgndLighter: #30363d;
+$accent1: #00ff67;
+$accent2: #00bdff;
+$transp6: rgba(
+  $color: white,
+  $alpha: 0.6,
+);
+$transp2: rgba(
+  $color: white,
+  $alpha: 0.2,
+);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   color: white;
-  margin: 7%;
-  * {
-    font-family: sans-serif;
+  font-family: sans-serif;
+}
+
+p {
+  color: $transp6;
+  font-weight: 200;
+}
+
+body {
+  background-color: $bgnd;
+  padding: 100px 10%;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $transp6;
+}
+
+header {
+  #logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
   }
 }
 
@@ -13,11 +50,14 @@ html {
   grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   .graph {
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
-    border: 1px solid #30363d;
+    border: 1px solid $bgndLighter;
     .graph-info {
       padding: 20px;
+      p {
+        padding-top: 7px;
+      }
     }
     img {
       width: 100%;
@@ -28,21 +68,30 @@ html {
 
 form {
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
   display: block;
   * {
     display: block;
     margin-top: 5px;
   }
   input,
-  textarea,
-  button {
+  textarea {
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #30363d;
     width: 100%;
-    background-color: #0d1117;
+    background-color: $bgndLighter;
     color: white;
+    resize: vertical;
     padding: 10px 20px;
+    &[type="submit"] {
+      border: 1px solid transparent;
+      color: white;
+      transition: 0.3s ease;
+      &:hover {
+        border: 1px solid $accent1;
+        cursor: pointer;
+      }
+    }
   }
 }
