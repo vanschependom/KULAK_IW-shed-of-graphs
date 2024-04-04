@@ -56,7 +56,7 @@ def index():
         lines = file.readlines()
 
         # loop over the last 20 lines backwards
-        for i in range(1, len(lines)):
+        for i in range(1, len(lines)+1):
 
             split = lines[-i].strip().split("\t")
             graphs = split[4:]
