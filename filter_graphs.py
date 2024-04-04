@@ -339,17 +339,17 @@ def load_filters(path_to_filter):
 
     except FileNotFoundError:
         # throw an error if the file doesn't exist
-        raise ("The filter file does not exist. Please provide a valid filter.")
+        raise FileNotFoundError("The filter file does not exist. Please provide a valid filter.")
 
     except:
         # If we get a different error, this means that the json file is not valid
-        raise (
+        raise Exception(
             "The filter file doesn't have a valid format. Please provide a valid filter.")
 
     # Check if the filter is valid
     if not are_valid_filters(filters):
         # Raise an exception if it isn't
-        raise ("The structure of the file is not valid. Please provide a valid filter.")
+        raise Exception("The structure of the file is not valid. Please provide a valid filter.")
 
     return filters
 
@@ -377,6 +377,10 @@ if __name__ == "__main__":
 
     # Split the data (graphs) by new line
     graphs = data.split('\n')
+
+    # If the last line is an empty string, we don't include it
+    if graphs[-1] == "":
+        graphs.pop()
 
     # Check illegal combinations of arguments
     if (cmdln_args.automatic == True and (cmdln_args.date == None or cmdln_args.thread == None)):

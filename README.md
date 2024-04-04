@@ -119,7 +119,7 @@ Arne Claerhout
 
 The Python script `filter_graphs.py` takes graphs from the standard input and filters them based on the provided filter in JSON format.
 
-Run `python3 filter_graphs.py --help` to view all required and optional arguments, or click [here]() to skip to the detailed instructions on using this script.
+Run `python3 filter_graphs.py --help` to view all required and optional arguments, or click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#manual-graph-filtering-1) to skip to the detailed instructions on using this script.
 
 ### Automatic graph generation and filtering
 
@@ -128,11 +128,11 @@ We have provided a script, called `generate_graphs.sh`, that does two things:
 1. Generate planar graphs of a given degree using _Plantri_
 2. Filter these generated graphs with the above mentioned Python script, based on the JSON-format filter provided by the user.
 
-Click [here]() to skip to the usage instructions for this bash script.
+Click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#automatic-graph-generation-and-filtering-1) to skip to the usage instructions for this bash script.
 
 #### Multithreading
 
-The automatic mode can also be run in multithreaded mode, to speed up graph generation. Click [here]() to skip to the usage instructions,
+The automatic mode can also be run in multithreaded mode, to speed up graph generation. Click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#multithreading-1) to skip to the usage instructions,
 
 ### Filtered graph history
 
@@ -152,15 +152,15 @@ Each entry represents 20 processed graphs using the following format:
 
 We have provided a bash script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`.
 
-Click [here]() to skip to the command for running this script or [configure it in the cron table]() to make it run every hour.
+Click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#running-the-backup-script) to skip to the command for running this script or [configure it in the cron table](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#configuring-automatic-history-backup) to make it run every hour.
 
 #### Backup restoration
 
-After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here]() for the instructions on restoring the history file.
+After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#restoring-the-history-from-a-backup) for the instructions on restoring the history file.
 
 ### Web server
 
-We provide a web server that displays the 20 last processed graphs. Click [here]() to skip to the instructions for starting the web server using _Flask_.
+We provide a web server that displays the 20 last processed graphs. Click [here](https://github.com/vanschependom/KULAK_IW-shed-of-graphs/tree/main?tab=readme-ov-file#starting-the-web-server) to skip to the instructions for starting the web server using _Flask_.
 
 ## Usage
 
