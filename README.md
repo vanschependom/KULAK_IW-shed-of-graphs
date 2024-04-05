@@ -100,6 +100,9 @@ Arne Claerhout
 - 8.4 _(04/04/24)_
   - Image deletion over time
   - Minor fixes
+- 9.0 _(06/04/24)_
+  - Merged `stage8` with `main`
+  - Created `stage9` branch
 
 </details>
 
