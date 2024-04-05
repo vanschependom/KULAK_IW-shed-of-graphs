@@ -1,5 +1,4 @@
-
-tic=`date +%s`
+#!/bin/bash
 
 order=$1
 filter_file=$2
@@ -34,7 +33,7 @@ date=$(date +'%Y-%m-%d-%H-%M-%S')
 
 # run the plantri command for each thread
 for ((i=0; i<nb_of_threads; i++)); do
-    ./plantri -p -g $order $i/$nb_of_threads 2>/dev/null | python3 filter_graphs.py $filter_file --thread $i --date $date --automatic &
+    ./plantri -p -g $order $i/$nb_of_threads 2>/dev/null | python3 filter_graphs.py --filter $filter_file --thread $i --date $date --automatic &
     # run the command in the background and save the process id
     processes+=($!)
 done
@@ -47,8 +46,4 @@ done
 # run write_history.py
 python3 write_history.py $date $filter_file $nb_of_threads
 
-toc=$(date +%s)
-
 echo "Generated all graphs."
-
-times

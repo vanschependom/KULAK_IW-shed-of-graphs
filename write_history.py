@@ -44,14 +44,14 @@ def generate_history(inputNumber, passed, filters):
         while i < outputNumber:
             if i % 20 == 0 and i != 0:
                 output.append([date, str(inputNumber), str(outputNumber),
-                               jsonString, ", ".join(graphsList20)])
+                               jsonString, "\t".join(graphsList20)])
                 graphsList20 = []
             graphsList20.append(passed[i])
             i += 1
 
         # add the remaining graphs
         output.append([date, str(inputNumber), str(outputNumber),
-                       jsonString, ", ".join(graphsList20)])
+                       jsonString, "\t".join(graphsList20)])
 
         return output
 
@@ -127,9 +127,6 @@ if __name__ == "__main__":
         # Split the first line into the input number and the passed graphs
         threadInputNumber, * \
             threadPassedGraphs = first_line.split("\t")
-
-        # remove the last element of the list, because it is empty
-        threadPassedGraphs = threadPassedGraphs[:-1]
 
         # Add the input number to the total input number
         totalInputNumber += int(threadInputNumber)

@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Fira Code", sans-serif;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 200;
+}
+
+body {
+  background-color: #161b22;
+  padding: 100px 10%;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+header #logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#graph-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+#graph-wrapper .graph {
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #30363d;
+}
+#graph-wrapper .graph .graph-info {
+  padding: 20px;
+}
+#graph-wrapper .graph .graph-info p {
+  padding-top: 7px;
+}
+#graph-wrapper .graph img {
+  width: 100%;
+  height: auto;
+}
+
+form {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+}
+form * {
+  display: block;
+  margin-top: 5px;
+}
+form input,
+form textarea {
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  width: 100%;
+  background-color: #30363d;
+  color: white;
+  resize: vertical;
+  padding: 10px 20px;
+}
+form input[type=submit],
+form textarea[type=submit] {
+  border: 1px solid transparent;
+  color: white;
+  transition: 0.3s ease;
+}
+form input[type=submit]:hover,
+form textarea[type=submit]:hover {
+  border: 1px solid #00ff67;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

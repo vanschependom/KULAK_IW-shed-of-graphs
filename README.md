@@ -74,14 +74,32 @@ Arne Claerhout
   - Commented out the code responsible for exporting graphs
     - This will be added back in a later stage
 - 7.0 _(02/04/24)_
-  - Merged `stage5` with main
-  - Merged `stage6` with main
+  - Merged `stage5` with `main`
+  - Merged `stage6` with `main`
   - Created `stage7` branch
 - 7.1 _(02/04/24)_
   - Added export functionality
 - 7.2 _(02/04/24)_
   - Reworked the `filter_graphs.py` structure
   - Fully revamped `README.md`
+- 8.0 _(02/04/24)_
+  - Merged `stage7` with `main`
+  - Created `stage8` branch
+- 8.1 _(02/04/24)_
+  - Added basic webserver functionality
+    - Added flask code to `webserver.py`
+    - Added `index.html` to `/templates`
+- 8.2 _(02/04/24)_
+  - Extended web server functionality
+    - Added `style.css` to `/static/css`
+    - Added `/static/fonts`
+    - Added feature for displaying images (not pretty yet!)
+- 8.3 _(03/04/24)_
+  - Improved user interface
+  - Fixed bug where the first line in the history file wasn't properly processed
+- 8.4 _(04/04/24)_
+  - Image deletion over time
+  - Minor fixes
 
 </details>
 
@@ -98,7 +116,7 @@ Arne Claerhout
 - [x] **Stage 5**: History file backups
 - [x] **Stage 6**: Bash script for multithreading
 - [x] **Stage 7**: Exporting graph drawings
-- [ ] **Stage 8**: Web server
+- [x] **Stage 8**: Web server
 - [ ] **Stage 9**: Docker
 
 ## Features
@@ -107,7 +125,7 @@ Arne Claerhout
 
 The Python script `filter_graphs.py` takes graphs from the standard input and filters them based on the provided filter in JSON format.
 
-Run `python3 filter_graphs.py --help` to view all required and optional arguments, or click [here]() to skip to the detailed instructions on using this script.
+Run `python3 filter_graphs.py --help` to view all required and optional arguments, or click [here](#manual-graph-filtering-1) to skip to the detailed instructions on using this script.
 
 ### Automatic graph generation and filtering
 
@@ -116,11 +134,11 @@ We have provided a script, called `generate_graphs.sh`, that does two things:
 1. Generate planar graphs of a given degree using _Plantri_
 2. Filter these generated graphs with the above mentioned Python script, based on the JSON-format filter provided by the user.
 
-Click [here]() to skip to the usage instructions for this bash script.
+Click [here](#automatic-graph-generation-and-filtering-1) to skip to the usage instructions for this bash script.
 
 #### Multithreading
 
-The automatic mode can also be run in multithreaded mode, to speed up graph generation. Click [here]() to skip to the usage instructions,
+The automatic mode can also be run in multithreaded mode, to speed up graph generation. Click [here](#multithreading-1) to skip to the usage instructions,
 
 ### Filtered graph history
 
@@ -140,11 +158,15 @@ Each entry represents 20 processed graphs using the following format:
 
 We have provided a bash script, `backup_history.sh`, that makes a backup of the `history.txt` file to the folder `~/.filtered-graphs`.
 
-Click [here]() to skip to the command for running this script or [configure it in the cron table]() to make it run every hour.
+Click [here](#running-the-backup-script) to skip to the command for running this script or [configure it in the cron table](#configuring-automatic-history-backup) to make it run every hour.
 
 #### Backup restoration
 
-After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here]() for the instructions on restoring the history file.
+After making a backup of the passed graph history, you can restore this to the `history.txt` file by running `restore_from_backup.sh`. Click [here](#restoring-the-history-from-a-backup) for the instructions on restoring the history file.
+
+### Web server
+
+We provide a web server that displays the 20 last processed graphs. Click [here](#starting-the-web-server) to skip to the instructions for starting the web server using _Flask_.
 
 ## Usage
 
@@ -286,17 +308,19 @@ This script has a few arguments - both required and optional - which you can con
 python3 filter_graphs.py --help
 ```
 
-These arguments are also listed below:
+The following arguments can be provided when running manually:
 
-- **Required**:
-  - `filter`: The path to the JSON filter
-- **Optional**:
-  - `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
-  - `--format <export_format>`: The format you want the exported graphs to be in. This can be either _.jpg, .jpeg, .svg, .png_ or _.pdf_. If nothing is provided, the default format is _.png_.
-- **Should not be used** when running `filter_graphs.py` manually:
-  - `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
-  - `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
-  - `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+- `--filter <path_to_filter>`: The path to the JSON filter
+- `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
+- `--format <export_format>`: The format you want the exported graphs to be in. This can be either _jpg, jpeg, svg, png_ or _pdf_. If nothing is provided, the default format is _png_.
+
+**Should not be used** when running `filter_graphs.py` manually:
+
+- `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
+- `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
+- `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+
+The last three arguments should only be used by `generate_graphs.sh` - possibly running multithreaded.
 
 #### Example usage
 
@@ -305,7 +329,7 @@ Assume `<command_generating_graph6_graphs>` spits out a series of Graph6 graphs 
 The command below saves all graphs that pass the `example_filter.json` filter to `/output_directory` in _.svg_ format:
 
 ```bash
-<command_generating_graph6_graphs> | python3 filter_graphs.py example_filter.json --export output_directory --format svg
+<command_generating_graph6_graphs> | python3 filter_graphs.py --filter example_filter.json --export output_directory --format svg
 ```
 
 ### Automatic graph generation and filtering
@@ -376,10 +400,28 @@ To restore the history from a saved backup in the `~/.filtered-graphs` folder, s
 
 All available backups will be listed and you will be prompted to select the one you wish to restore.
 
+### Starting the web server
+
+Start by specifying that _Flask_ must run the `webserver.py` script:
+
+```bash
+export FLASK_APP=webserver
+```
+
+Now start the web server by simply running:
+
+```bash
+flask run
+```
+
+Great job, you can now visit the web server at on your localhost ([127.0.0.1:5000/index](http://127.0.0.1:5000/index))!
+
 ## Contents
 
 - `/plantri54`:
   A folder containing the necessary files for compiling the Plantri C program.
+- `/static`: A folder containing the necessary files for styling the web server index page.
+- `/templates`: A folder containing the HTML template of the web server.
 - `.gitignore`:
   A file containing rules about what not to push to the remote repository.
 - `backup_history.sh`: A script for making a backup of the `history.txt` file.
@@ -395,4 +437,5 @@ All available backups will be listed and you will be prompted to select the one 
   A file containing all Python dependencies that are required.
 - `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
 - `unit_tests.py`: A file containing all Pytest unit tests.
+- `webserver.py`: A Python script with the necessary code for running the Flask webserver.
 - `write_history.py`: A Python script for writing the history to memory.
