@@ -103,6 +103,8 @@ Arne Claerhout
 - 9.0 _(06/04/24)_
   - Merged `stage8` with `main`
   - Created `stage9` branch
+- 9.1 _(07/04/24)_
+  - Added Docker container
 
 </details>
 
@@ -120,7 +122,7 @@ Arne Claerhout
 - [x] **Stage 6**: Bash script for multithreading
 - [x] **Stage 7**: Exporting graph drawings
 - [x] **Stage 8**: Web server
-- [ ] **Stage 9**: Docker
+- [x] **Stage 9**: Docker
 
 ## Features
 
@@ -419,6 +421,48 @@ flask run
 
 Great job, you can now visit the web server at on your localhost ([127.0.0.1:5000/index](http://127.0.0.1:5000/index))!
 
+### Running in a Docker container
+
+You can run the webserver from a Docker container as well, by following the steps listed below.
+
+#### 1. Install Docker
+
+Install Docker from [the Docker website](https://www.docker.com/products/docker-desktop/).
+
+#### 2. Create the container
+
+Create the Docker container from `Dockerfile` by running:
+
+```bash
+docker build -t webserver .
+```
+
+#### 3. Run the container
+
+Run the Docker container with the following command:
+
+```bash
+docker run -dp 127.0.0.1:5000:5000 webserver
+```
+
+#### 4. Done
+
+Ensure the webserver is running by listing all active containers:
+
+```bash
+docker ps
+```
+
+If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](127.0.0.1:5000).
+
+#### 5. Stopping the server
+
+Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command.
+
+```bash
+docker stop <containerID>
+```
+
 ## Contents
 
 - `/plantri54`:
@@ -428,6 +472,7 @@ Great job, you can now visit the web server at on your localhost ([127.0.0.1:500
 - `.gitignore`:
   A file containing rules about what not to push to the remote repository.
 - `backup_history.sh`: A script for making a backup of the `history.txt` file.
+- `Dockerfile`: A file for creating the Docker container for the webserver.
 - `example_filter.json` and `example_filter_2.json`:
   JSON files containing an example for how to use the filter format.
 - `filter_graphs.py`:
