@@ -459,7 +459,7 @@ If the webserver we have just initialized is listed by the command above, the se
 
 #### 5. Stopping the server
 
-Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command. This will copy the history from the container over to your system.
+Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command. This will also copy the history from the container over to your system.
 
 ```bash
 ./stop_docker.sh <containerID>
@@ -486,6 +486,7 @@ Run `docker ps` again to find out the container ID. Then run the command below, 
 - `requirements.txt`:
   A file containing all Python dependencies that are required.
 - `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
+- `stop_docker.sh`: A script for stopping a docker container
 - `unit_tests.py`: A file containing all Pytest unit tests.
 - `webserver.py`: A Python script with the necessary code for running the Flask webserver.
 - `write_history.py`: A Python script for writing the history to memory.
