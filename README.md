@@ -249,7 +249,7 @@ cc -o plantri -O4 ./plantri54/plantri.c
 
 ### Defining graph filters
 
-First, create a `filter.json` file, in which you specify which filters you want to apply. You can name this file anything you want, just make sure to enter the right name in a [later step]().
+First, create a `filter.json` file, in which you specify which filters you want to apply. You can name this file anything you want, just make sure to enter the right name in a [later step](#manual-graph-filtering).
 
 Filters have a name, as well as one or two arguments. An overview of allowed filters is given below:
 
@@ -429,6 +429,8 @@ You can run the webserver from a Docker container as well, by following the step
 
 Install Docker from [the Docker website](https://www.docker.com/products/docker-desktop/).
 
+If you are working on WSL, the enabling of WSL integration in **Settings -> Resources -> WSL integration** will also be required.
+
 #### 2. Create the container
 
 Create the Docker container from `Dockerfile` by running:
@@ -457,10 +459,10 @@ If the webserver we have just initialized is listed by the command above, the se
 
 #### 5. Stopping the server
 
-Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command.
+Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command. This will copy the history from the container over to your system.
 
 ```bash
-docker stop <containerID>
+./stop_docker.sh <containerID>
 ```
 
 ## Contents
