@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <link href="{{ url_for('static', filename= 'fonts/font.ttf') }}" rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="{{ url_for('static', filename= 'assets/favicon.png') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename= 'script.js') }}"></script>
 </head>
 <body>
     <header>
@@ -15,11 +16,29 @@
     </header>
     <main>
         <h2>Generate planar graphs</h2>
+        <form name="new-filter" id="filterForm" action="" method="get" onsubmit="">
+            <h3>Add new filter:</h3>
+            <select name="filter-type" id="filter-type" onchange="filterCheck(this);" required>
+                <option value="only_degree">Only degree</option>
+                <option value="min_degree">Minimum degree</option>
+                <option value="max_degree">Maximum degree</option>
+                <option value="exact_degree">Exact degree</option>
+            </select>
+            <input type="text" name="degree" id="degree" placeholder="Degree(s)" required pattern="^\d+(,\s*\d+)*$">
+            <input type="text" name="amount" id="amount" placeholder="Amount" pattern="^\d+(,\s*\d+)*$">
+            <input type="submit" value="Add filter">
+        </form>
+        <div id="filter-container">
+            <h3>Current filters</h3>
+            <ul id="filter-list">
+                <!-- Filters will be added here -->
+            </ul>
+            <input type="button" value="Clear filters" id="clear-filters">
+        </div>
         <form action="{{ url_for('generate') }}" method="post">
-            <input required type="number" name="order" placeholder="Order" id="order">
-            <input required type="number" name="threads" placeholder="Number of threads to be used" id="threads">
-            <textarea required name="filter" id="filters" cols="30" rows="10" placeholder="JSON filter"></textarea>
-            <input type="submit" value="Generate">
+            <input type="hidden" name="filters" id="filters"> <!-- here comes the json -->
+            <input type="number" name="order" id="order" placeholder="Order" required>
+            <input type="submit" value="Generate" id="generateButton">
         </form>
         <h2>Last Processed Graphs</h2>
         <div id="graph-wrapper">
