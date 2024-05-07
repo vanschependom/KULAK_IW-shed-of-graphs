@@ -460,7 +460,7 @@ Ensure the webserver is running by listing all active containers:
 docker ps
 ```
 
-If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](127.0.0.1:5000).
+If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](http://127.0.0.1:5000).
 
 #### 5. Stopping the server
 
