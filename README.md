@@ -28,9 +28,10 @@ Arne Claerhout
 -   2.0 _(25/03/24)_
     -   Merged `stage1` with `main`
     -   Created `stage2` branch
+-   2.1 _(25/03/24)_
     -   Added the history implementation
     -   Added an explanation to `README.md` about the history of generated graphs
--   2.1 _(26/03/24)_
+-   2.2 _(26/03/24)_
     -   Refactored code in `filter_graphs.py`:
         -   Added main method
         -   Everything has its own function now; this will make unit testing easier
