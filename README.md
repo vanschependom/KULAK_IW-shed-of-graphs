@@ -13,111 +13,120 @@ Arne Claerhout
     Click to expand
   </summary>
 
-- 0.0 _(22/04/24)_
-  - Project creation
-- 1.0 _(22/04/24)_
-  - Created `stage1` branch
-  - Added instructions in `README.md`
-  - Started development
-- 1.1 _(23/04/24)_
-  - Created foundations for `filter_graphs.py`, `generate_graphs.py`
-  - Added example `example_filter.json`
-  - Updated `requirements.txt`
-- 1.2 _(24/03/24)_
-  - Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
-- 2.0 _(25/03/24)_
-  - Merged `stage1` with `main`
-  - Created `stage2` branch
-  - Added the history implementation
-  - Added an explanation to `README.md` about the history of generated graphs
-- 2.1 _(26/03/24)_
-  - Refactored code in `filter_graphs.py`:
-    - Added main method
-    - Everything has its own function now; this will make unit testing easier
-- 3.0 _(26/03/24)_
-  - Merged `stage2` with `main`
-  - Created `stage3` branch
-- 3.1 _(26/03/24)_
-  - Created first tests for `passed_filter()`
-- 3.2 _(28/03/24)_
-  - Split the history functionality into seperate methods `generate_history()` and `write_history()`
-  - Added additional unit tests for filter and history functionality
-- 4.0 _(28/03/24)_
-  - Merged `stage3` with `main`
-  - Created `stage4` branch
-- 4.1 _(28/03/24)_
-  - Added rule expansion
-- 4.2 _(28/03/24)_
-  - Added supplementary unit tests for the rule expansion
-- 4.3 _(29/03/24)_
-  - Added illegal filter detection and corresponding tests
-- 4.4 _(30/03/24)_
-  - Added docstrings to `filter_graphs.py`
-  - Added supplementary illegal filter detection tests
-- 5.0 _(30/03/24)_
-  - Merged `stage4` with `main`
-  - Created `stage5` branch
-- 5.1 _(30/03/24)_
-  - Added backup functionality (`history_backup.sh`)
-  - Added restore functionality (`restore_from_backup.sh`)
-  - Added instructions for all new features in `README.md`
-- 6.0 _(01/04/24)_
-  - Created `stage6` branch
-- 6.1 _(01/04/24)_
-  - Created the multithreading functionality in seperate folder
-  - Added an explanation to `README.md`
-- 6.2 _(01/04/24)_
-  - Refactored multithreading
-    - Removed seperate folder
-    - Added optional 3rd command line argument for `generate_graphs.sh` to include the number of threads
-    - Reworked the history functionality
-  - Commented out the code responsible for exporting graphs
-    - This will be added back in a later stage
-- 7.0 _(02/04/24)_
-  - Merged `stage5` with `main`
-  - Merged `stage6` with `main`
-  - Created `stage7` branch
-- 7.1 _(02/04/24)_
-  - Added export functionality
-- 7.2 _(02/04/24)_
-  - Reworked the `filter_graphs.py` structure
-  - Fully revamped `README.md`
-- 8.0 _(02/04/24)_
-  - Merged `stage7` with `main`
-  - Created `stage8` branch
-- 8.1 _(02/04/24)_
-  - Added basic webserver functionality
-    - Added flask code to `webserver.py`
-    - Added `index.html` to `/templates`
-- 8.2 _(02/04/24)_
-  - Extended web server functionality
-    - Added `style.css` to `/static/css`
-    - Added `/static/fonts`
-    - Added feature for displaying images (not pretty yet!)
-- 8.3 _(03/04/24)_
-  - Improved user interface
-  - Fixed bug where the first line in the history file wasn't properly processed
-- 8.4 _(04/04/24)_
-  - Image deletion over time
-  - Minor fixes
+-   0.0 _(22/04/24)_
+    -   Project creation
+-   1.0 _(22/04/24)_
+    -   Created `stage1` branch
+    -   Added instructions in `README.md`
+    -   Started development
+-   1.1 _(23/04/24)_
+    -   Created foundations for `filter_graphs.py`, `generate_graphs.py`
+    -   Added example `example_filter.json`
+    -   Updated `requirements.txt`
+-   1.2 _(24/03/24)_
+    -   Added the compiling of Plantri, since this is system-dependent and we can thus not include the compiled program on this repository.
+-   2.0 _(25/03/24)_
+    -   Merged `stage1` with `main`
+    -   Created `stage2` branch
+    -   Added the history implementation
+    -   Added an explanation to `README.md` about the history of generated graphs
+-   2.1 _(26/03/24)_
+    -   Refactored code in `filter_graphs.py`:
+        -   Added main method
+        -   Everything has its own function now; this will make unit testing easier
+-   3.0 _(26/03/24)_
+    -   Merged `stage2` with `main`
+    -   Created `stage3` branch
+-   3.1 _(26/03/24)_
+    -   Created first tests for `passed_filter()`
+-   3.2 _(28/03/24)_
+    -   Split the history functionality into seperate methods `generate_history()` and `write_history()`
+    -   Added additional unit tests for filter and history functionality
+-   4.0 _(28/03/24)_
+    -   Merged `stage3` with `main`
+    -   Created `stage4` branch
+-   4.1 _(28/03/24)_
+    -   Added rule expansion
+-   4.2 _(28/03/24)_
+    -   Added supplementary unit tests for the rule expansion
+-   4.3 _(29/03/24)_
+    -   Added illegal filter detection and corresponding tests
+-   4.4 _(30/03/24)_
+    -   Added docstrings to `filter_graphs.py`
+    -   Added supplementary illegal filter detection tests
+-   5.0 _(30/03/24)_
+    -   Merged `stage4` with `main`
+    -   Created `stage5` branch
+-   5.1 _(30/03/24)_
+    -   Added backup functionality (`history_backup.sh`)
+    -   Added restore functionality (`restore_from_backup.sh`)
+    -   Added instructions for all new features in `README.md`
+-   6.0 _(01/04/24)_
+    -   Created `stage6` branch
+-   6.1 _(01/04/24)_
+    -   Created the multithreading functionality in seperate folder
+    -   Added an explanation to `README.md`
+-   6.2 _(01/04/24)_
+    -   Refactored multithreading
+        -   Removed seperate folder
+        -   Added optional 3rd command line argument for `generate_graphs.sh` to include the number of threads
+        -   Reworked the history functionality
+    -   Commented out the code responsible for exporting graphs
+        -   This will be added back in a later stage
+-   7.0 _(02/04/24)_
+    -   Merged `stage5` with `main`
+    -   Merged `stage6` with `main`
+    -   Created `stage7` branch
+-   7.1 _(02/04/24)_
+    -   Added export functionality
+-   7.2 _(02/04/24)_
+    -   Reworked the `filter_graphs.py` structure
+    -   Fully revamped `README.md`
+-   8.0 _(02/04/24)_
+    -   Merged `stage7` with `main`
+    -   Created `stage8` branch
+-   8.1 _(02/04/24)_
+    -   Added basic webserver functionality
+        -   Added flask code to `webserver.py`
+        -   Added `index.html` to `/templates`
+-   8.2 _(02/04/24)_
+    -   Extended web server functionality
+        -   Added `style.css` to `/static/css`
+        -   Added `/static/fonts`
+        -   Added feature for displaying images (not pretty yet!)
+-   8.3 _(03/04/24)_
+    -   Improved user interface
+    -   Fixed bug where the first line in the history file wasn't properly processed
+-   8.4 _(04/04/24)_
+    -   Image deletion over time
+    -   Minor fixes
+-   9.0 _(06/04/24)_
+    -   Merged `stage8` with `main`
+    -   Created `stage9` branch
+-   9.1 _(07/04/24)_
+    -   Added Docker container
+-   9.2 _(08/04/24)_
+    -   Added ability to stop Docker container
+-   9.3 _(17/04/24)_
+    -   Added webserver functionality to add filters in a user-friendly form
 
 </details>
 
 ## Todo-list
 
-- [x] **Stage 1**: Filter implementation in Python
-  - [x] Bash script
-  - [x] Python script
-- [x] **Stage 2**: System history (history.txt)
-  - [x] History functionality
-- [x] **Stage 3**: Unit testing
-  - [x] Testing functionality
-- [x] **Stage 4**: Rule expansion
-- [x] **Stage 5**: History file backups
-- [x] **Stage 6**: Bash script for multithreading
-- [x] **Stage 7**: Exporting graph drawings
-- [x] **Stage 8**: Web server
-- [ ] **Stage 9**: Docker
+-   [x] **Stage 1**: Filter implementation in Python
+    -   [x] Bash script
+    -   [x] Python script
+-   [x] **Stage 2**: System history (history.txt)
+    -   [x] History functionality
+-   [x] **Stage 3**: Unit testing
+    -   [x] Testing functionality
+-   [x] **Stage 4**: Rule expansion
+-   [x] **Stage 5**: History file backups
+-   [x] **Stage 6**: Bash script for multithreading
+-   [x] **Stage 7**: Exporting graph drawings
+-   [x] **Stage 8**: Web server
+-   [x] **Stage 9**: Docker
 
 ## Features
 
@@ -148,11 +157,11 @@ Each entry represents 20 processed graphs using the following format:
 
 > `<timestamp>\t<inputNumber>\t<outputNumber>\t<filter>\t<passedGraphList>`
 >
-> - `timestamp:` the current time in `%d/%m/%Y %H:%M:%S` format
-> - `inputNumber:` the number of graphs generated of the given order by Plantri
-> - `outputNumber:` the number of of graphs that passed the provided filter
-> - `filter:` the provided JSON filter, parsed as a string
-> - `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
+> -   `timestamp:` the current time in `%d/%m/%Y %H:%M:%S` format
+> -   `inputNumber:` the number of graphs generated of the given order by Plantri
+> -   `outputNumber:` the number of of graphs that passed the provided filter
+> -   `filter:` the provided JSON filter, parsed as a string
+> -   `passedGraphList:` a comma-seperated list of the Graph6 representations of graphs that passed the filter
 
 #### (Automatic) history backup
 
@@ -244,29 +253,29 @@ cc -o plantri -O4 ./plantri54/plantri.c
 
 ### Defining graph filters
 
-First, create a `filter.json` file, in which you specify which filters you want to apply. You can name this file anything you want, just make sure to enter the right name in a [later step]().
+First, create a `filter.json` file, in which you specify which filters you want to apply. You can name this file anything you want, just make sure to enter the right name in a [later step](#manual-graph-filtering).
 
 Filters have a name, as well as one or two arguments. An overview of allowed filters is given below:
 
-- **only_degree**
-  - The graph can **only** contain vertices with degree(s) _\<degree\>_
-  - Arguments:
-    - _degree_: either and integer or a list of integers
-- **min_degree**
-  - The graph must contain **at least** _\<amount\>_ vertices with degree _\<degree\>_
-  - Arguments:
-    - _degree_: either and integer or a list of integers
-    - _amount_: an integer
-- **max_degree**
-  - The graph must contain **at most** _\<amount\>_ vertices with degree _\<degree\>_
-  - Arguments:
-    - _degree_: either and integer or a list of integers
-    - _amount_: an integer
-- **exact_degree**
-  - The graph must contain **exactly** _\<amount\>_ vertices with degree _\<degree\>_
-  - Arguments:
-    - _degree_: either and integer or a list of integers
-    - _amount_: an integer
+-   **only_degree**
+    -   The graph can **only** contain vertices with degree(s) _\<degree\>_
+    -   Arguments:
+        -   _degree_: either and integer or a list of integers
+-   **min_degree**
+    -   The graph must contain **at least** _\<amount\>_ vertices with degree _\<degree\>_
+    -   Arguments:
+        -   _degree_: either and integer or a list of integers
+        -   _amount_: an integer
+-   **max_degree**
+    -   The graph must contain **at most** _\<amount\>_ vertices with degree _\<degree\>_
+    -   Arguments:
+        -   _degree_: either and integer or a list of integers
+        -   _amount_: an integer
+-   **exact_degree**
+    -   The graph must contain **exactly** _\<amount\>_ vertices with degree _\<degree\>_
+    -   Arguments:
+        -   _degree_: either and integer or a list of integers
+        -   _amount_: an integer
 
 An example for the filterfile in JSON-format is shown below:
 
@@ -274,14 +283,14 @@ An example for the filterfile in JSON-format is shown below:
 >
 > ```json
 > {
->   "max_degree": {
->     "degree": 2,
->     "amount": 3
->   },
->   "min_degree": {
->     "degree": 4,
->     "amount": 5
->   }
+> 	"max_degree": {
+> 		"degree": 2,
+> 		"amount": 3
+> 	},
+> 	"min_degree": {
+> 		"degree": 4,
+> 		"amount": 5
+> 	}
 > }
 > ```
 
@@ -291,10 +300,10 @@ Another example - passing a list, instead of an integer, in the `degree` argumen
 >
 > ```json
 > {
->   "exact": {
->     "degree": [4, 5],
->     "amount": 10
->   }
+> 	"exact": {
+> 		"degree": [4, 5],
+> 		"amount": 10
+> 	}
 > }
 > ```
 
@@ -310,15 +319,15 @@ python3 filter_graphs.py --help
 
 The following arguments can be provided when running manually:
 
-- `--filter <path_to_filter>`: The path to the JSON filter
-- `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
-- `--format <export_format>`: The format you want the exported graphs to be in. This can be either _jpg, jpeg, svg, png_ or _pdf_. If nothing is provided, the default format is _png_.
+-   `--filter <path_to_filter>`: The path to the JSON filter
+-   `--export <export_folder>`: The path to the folder, where you want the filtered graphs to be exported to.
+-   `--format <export_format>`: The format you want the exported graphs to be in. This can be either _jpg, jpeg, svg, png_ or _pdf_. If nothing is provided, the default format is _png_.
 
 **Should not be used** when running `filter_graphs.py` manually:
 
-- `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
-- `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
-- `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
+-   `--automatic`: This flag indicates that the script is run automatically by `generate_graphs.sh`.
+-   `--thread <thread_number>`: This indicates the thread number when running `generate_graphs.sh` multithreaded.
+-   `--date <generation_date>`: Provides a unique identifier for the output file of each thread.
 
 The last three arguments should only be used by `generate_graphs.sh` - possibly running multithreaded.
 
@@ -416,26 +425,72 @@ flask run
 
 Great job, you can now visit the web server at on your localhost ([127.0.0.1:5000/index](http://127.0.0.1:5000/index))!
 
+### Running in a Docker container
+
+You can run the webserver from a Docker container as well, by following the steps listed below.
+
+#### 1. Install Docker
+
+Install Docker from [the Docker website](https://www.docker.com/products/docker-desktop/).
+
+If you are working on WSL, the enabling of WSL integration in **Settings -> Resources -> WSL integration** will also be required.
+
+#### 2. Create the container
+
+Create the Docker container from `Dockerfile` by running:
+
+```bash
+docker build -t webserver .
+```
+
+#### 3. Run the container
+
+Run the Docker container with the following command:
+
+```bash
+docker run -dp 127.0.0.1:5000:5000 webserver
+```
+
+#### 4. Done
+
+Ensure the webserver is running by listing all active containers:
+
+```bash
+docker ps
+```
+
+If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](127.0.0.1:5000).
+
+#### 5. Stopping the server
+
+Run `docker ps` again to find out the container ID. Then run the command below, replacing `<containerID>` with the container ID from the `docker ps` command. This will also copy the history from the container over to your system.
+
+```bash
+./stop_docker.sh <containerID>
+```
+
 ## Contents
 
-- `/plantri54`:
-  A folder containing the necessary files for compiling the Plantri C program.
-- `/static`: A folder containing the necessary files for styling the web server index page.
-- `/templates`: A folder containing the HTML template of the web server.
-- `.gitignore`:
-  A file containing rules about what not to push to the remote repository.
-- `backup_history.sh`: A script for making a backup of the `history.txt` file.
-- `example_filter.json` and `example_filter_2.json`:
-  JSON files containing an example for how to use the filter format.
-- `filter_graphs.py`:
-  A Python script for filtering graphs.
-- `generate_graphs.sh`:
-  A bash script for generating and filtering planar graphs.
-- `README.md`:
-  The file you're reading right now.
-- `requirements.txt`:
-  A file containing all Python dependencies that are required.
-- `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
-- `unit_tests.py`: A file containing all Pytest unit tests.
-- `webserver.py`: A Python script with the necessary code for running the Flask webserver.
-- `write_history.py`: A Python script for writing the history to memory.
+-   `/plantri54`:
+    A folder containing the necessary files for compiling the Plantri C program.
+-   `/static`: A folder containing the necessary files for styling the web server index page.
+-   `/templates`: A folder containing the HTML template of the web server.
+-   `.gitignore`:
+    A file containing rules about what not to push to the remote repository.
+-   `backup_history.sh`: A script for making a backup of the `history.txt` file.
+-   `Dockerfile`: A file for creating the Docker container for the webserver.
+-   `example_filter.json` and `example_filter_2.json`:
+    JSON files containing an example for how to use the filter format.
+-   `filter_graphs.py`:
+    A Python script for filtering graphs.
+-   `generate_graphs.sh`:
+    A bash script for generating and filtering planar graphs.
+-   `README.md`:
+    The file you're reading right now.
+-   `requirements.txt`:
+    A file containing all Python dependencies that are required.
+-   `restore_from_backup.sh`: A script for restoring the `history.txt` file from a backup in `~/.filtered-graphs`
+-   `stop_docker.sh`: A script for stopping a docker container
+-   `unit_tests.py`: A file containing all Pytest unit tests.
+-   `webserver.py`: A Python script with the necessary code for running the Flask webserver.
+-   `write_history.py`: A Python script for writing the history to memory.

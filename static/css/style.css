@@ -49,6 +49,7 @@ header #logo {
 #graph-wrapper .graph img {
   width: 100%;
   height: auto;
+  padding: auto;
 }
 
 form {
@@ -59,6 +60,19 @@ form {
 form * {
   display: block;
   margin-top: 5px;
+}
+form select {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  width: 100%;
+  background-color: #30363d;
+  color: white;
+  outline: none;
+}
+form select:hover {
+  cursor: pointer;
 }
 form input,
 form textarea {
@@ -81,4 +95,52 @@ form input[type=submit]:hover,
 form textarea[type=submit]:hover {
   border: 1px solid #00ff67;
   cursor: pointer;
+}
+
+#generateButton,
+#order {
+  display: none;
+}
+
+#filterForm #amount {
+  display: none;
+}
+
+#filter-container {
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 10px;
+  display: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+#filter-container input {
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+  width: 100%;
+  background-color: #30363d;
+  color: white;
+  resize: vertical;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+#filter-container input[type=button] {
+  border: 1px solid transparent;
+  color: white;
+  transition: 0.3s ease;
+}
+#filter-container input[type=button]:hover {
+  border: 1px solid #00ff67;
+  cursor: pointer;
+}
+#filter-container ul li {
+  list-style-position: inside;
+  padding-left: 10px;
+}
+
+h3 {
+  margin-bottom: 5px;
 }/*# sourceMappingURL=style.css.map */

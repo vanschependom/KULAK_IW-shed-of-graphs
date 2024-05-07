@@ -3,95 +3,160 @@ $bgndLighter: #30363d;
 $accent1: #00ff67;
 $accent2: #00bdff;
 $transp6: rgba(
-  $color: white,
-  $alpha: 0.6,
+	$color: white,
+	$alpha: 0.6,
 );
 $transp2: rgba(
-  $color: white,
-  $alpha: 0.2,
+	$color: white,
+	$alpha: 0.2,
 );
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: white;
-  font-family: "Fira Code", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: white;
+	font-family: "Fira Code", sans-serif;
 }
 
 p {
-  color: $transp6;
-  font-weight: 200;
+	color: $transp6;
+	font-weight: 200;
 }
 
 body {
-  background-color: $bgnd;
-  padding: 100px 10%;
+	background-color: $bgnd;
+	padding: 100px 10%;
 }
 
 h2 {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $transp6;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $transp6;
 }
 
 header {
-  #logo {
-    width: 300px;
-    height: auto;
-    margin-bottom: 20px;
-  }
+	#logo {
+		width: 300px;
+		height: auto;
+		margin-bottom: 20px;
+	}
 }
 
 #graph-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  .graph {
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid $bgndLighter;
-    .graph-info {
-      padding: 20px;
-      p {
-        padding-top: 7px;
-      }
-    }
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	.graph {
+		border-radius: 10px;
+		text-align: center;
+		border: 1px solid $bgndLighter;
+		.graph-info {
+			padding: 20px;
+			p {
+				padding-top: 7px;
+			}
+		}
+		img {
+			width: 100%;
+			height: auto;
+			padding: auto;
+		}
+	}
 }
 
 form {
-  width: 100%;
-  max-width: 700px;
-  display: block;
-  * {
-    display: block;
-    margin-top: 5px;
-  }
-  input,
-  textarea {
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #30363d;
-    width: 100%;
-    background-color: $bgndLighter;
-    color: white;
-    resize: vertical;
-    padding: 10px 20px;
-    &[type="submit"] {
-      border: 1px solid transparent;
-      color: white;
-      transition: 0.3s ease;
-      &:hover {
-        border: 1px solid $accent1;
-        cursor: pointer;
-      }
-    }
-  }
+	width: 100%;
+	max-width: 700px;
+	display: block;
+	* {
+		display: block;
+		margin-top: 5px;
+	}
+	select {
+		padding: 10px 20px;
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #30363d;
+		width: 100%;
+		background-color: $bgndLighter;
+		color: white;
+		outline: none;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	input,
+	textarea {
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #30363d;
+		width: 100%;
+		background-color: $bgndLighter;
+		color: white;
+		resize: vertical;
+		padding: 10px 20px;
+		&[type="submit"] {
+			border: 1px solid transparent;
+			color: white;
+			transition: 0.3s ease;
+			&:hover {
+				border: 1px solid $accent1;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+#generateButton,
+#order {
+	display: none;
+}
+
+#filterForm {
+	#amount {
+		display: none;
+	}
+}
+#filter-container {
+	width: 100%;
+	max-width: 700px;
+	border: 1px solid $bgndLighter;
+	border-radius: 10px;
+	padding: 10px;
+	display: none;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	input {
+		font-size: 16px;
+		border-radius: 5px;
+		border: 1px solid #30363d;
+		width: 100%;
+		background-color: $bgndLighter;
+		color: white;
+		resize: vertical;
+		padding: 10px 20px;
+		margin-top: 10px;
+		&[type="button"] {
+			border: 1px solid transparent;
+			color: white;
+			transition: 0.3s ease;
+			&:hover {
+				border: 1px solid $accent1;
+				cursor: pointer;
+			}
+		}
+	}
+	ul {
+		li {
+			list-style-position: inside;
+			padding-left: 10px;
+		}
+	}
+}
+
+h3 {
+	margin-bottom: 5px;
 }

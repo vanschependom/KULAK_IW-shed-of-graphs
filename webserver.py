@@ -18,12 +18,14 @@ def generate():
     if request.method == 'POST':
 
         order = request.form['order']
-        filters = request.form['filter']
+        filters = request.form['filters']
+
+        print(filters)
 
         # create a filter JSON file from filters variable
         with open('webserver_filters.json', 'w') as file:
             file.write(filters)
-            
+
         # Export the passed graphs to the export_dir
         process = subprocess.Popen(
             [
@@ -48,15 +50,14 @@ def generate():
 
 @app.route('/index')
 def index():
-    
-    # We remove all the previously generated images so they don't stack up over time  
+
+    # We remove all the previously generated images so they don't stack up over time
     for i in os.listdir("static/images"):
         try:
             if i != ".gitignore":
                 os.remove("static/images/" + i)
         except:
             continue
-            
 
     last_20 = []
     last_20_passed_graphs = []
@@ -77,10 +78,12 @@ def index():
                 for graph in reversed(graphs):
                     if len(last_20) == 20:
                         break
-                    last_20.append([split[0], split[1], split[2], split[3], graph])
+                    last_20.append(
+                        [split[0], split[1], split[2], split[3], graph])
                     last_20_passed_graphs.append(graph)
     except FileNotFoundError:
-        raise FileNotFoundError("No history file found, please generate some graphs or create a history file and try again.")
+        raise FileNotFoundError(
+            "No history file found, please generate some graphs or create a history file and try again.")
 
     # create a string of passed graphs, seperated by a end of line
     passed_graphs_string = "\n".join(last_20_passed_graphs)
