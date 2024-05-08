@@ -472,6 +472,8 @@ Run `docker ps` again to find out the container ID. Then run the command below, 
 
 ## Contents
 
+-   `.github/workflows`:
+    The folder needed for GitHub Actions. This folder contains `graph_unit_tests.yaml`, responsible for running the unit tests of this project.
 -   `/plantri54`:
     A folder containing the necessary files for compiling the Plantri C program.
 -   `/static`: A folder containing the necessary files for styling the web server index page.
@@ -486,8 +488,6 @@ Run `docker ps` again to find out the container ID. Then run the command below, 
     A Python script for filtering graphs.
 -   `generate_graphs.sh`:
     A bash script for generating and filtering planar graphs.
--   `graph_unit_tests.yaml`:
-    The YAML file needed for GitHub Actions.
 -   `README.md`:
     The file you're reading right now.
 -   `requirements.txt`:
