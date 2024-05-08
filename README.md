@@ -13,13 +13,13 @@ Arne Claerhout
     Click to expand
   </summary>
 
--   0.0 _(22/04/24)_
+-   0.0 _(22/03/24)_
     -   Project creation
--   1.0 _(22/04/24)_
+-   1.0 _(22/03/24)_
     -   Created `stage1` branch
     -   Added instructions in `README.md`
     -   Started development
--   1.1 _(23/04/24)_
+-   1.1 _(23/03/24)_
     -   Created foundations for `filter_graphs.py`, `generate_graphs.py`
     -   Added example `example_filter.json`
     -   Updated `requirements.txt`
@@ -486,6 +486,8 @@ Run `docker ps` again to find out the container ID. Then run the command below, 
     A Python script for filtering graphs.
 -   `generate_graphs.sh`:
     A bash script for generating and filtering planar graphs.
+-   `graph_unit_tests.yaml`:
+    The YAML file needed for GitHub Actions.
 -   `README.md`:
     The file you're reading right now.
 -   `requirements.txt`:
