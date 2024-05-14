@@ -7,7 +7,7 @@ backup_dir="$HOME/.filtered-graphs"
 backup_files=("$backup_dir"/history_backup_*.txt)
 
 # Check if the backup directory exists
-if ! test -d /path/to/directory; then
+if ! test -d $backup_dir; then
   echo "$backup_dir does not exist."
   exit 1
 fi

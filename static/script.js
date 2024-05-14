@@ -8,7 +8,7 @@ filterCheck = (toCheck) => {
 	} else {
 		document.getElementById("amount").style.display = "block";
 		if (document.getElementById("degree").attributes.required) {
-			document.getElementById("degree").attributes.remove("required");
+			document.getElementById("degree").attributes.pop("required");
 		}
 	}
 };
