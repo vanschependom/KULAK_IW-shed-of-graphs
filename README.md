@@ -28,9 +28,10 @@ Arne Claerhout
 -   2.0 _(25/03/24)_
     -   Merged `stage1` with `main`
     -   Created `stage2` branch
+-   2.1 _(25/03/24)_
     -   Added the history implementation
     -   Added an explanation to `README.md` about the history of generated graphs
--   2.1 _(26/03/24)_
+-   2.2 _(26/03/24)_
     -   Refactored code in `filter_graphs.py`:
         -   Added main method
         -   Everything has its own function now; this will make unit testing easier
@@ -459,7 +460,7 @@ Ensure the webserver is running by listing all active containers:
 docker ps
 ```
 
-If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](127.0.0.1:5000).
+If the webserver we have just initialized is listed by the command above, the server is running correctly at [127.0.0.1:5000](http://127.0.0.1:5000).
 
 #### 5. Stopping the server
 
@@ -471,6 +472,8 @@ Run `docker ps` again to find out the container ID. Then run the command below, 
 
 ## Contents
 
+-   `.github/workflows`:
+    The folder needed for GitHub Actions. This folder contains `graph_unit_tests.yaml`, responsible for running the unit tests of this project.
 -   `/plantri54`:
     A folder containing the necessary files for compiling the Plantri C program.
 -   `/static`: A folder containing the necessary files for styling the web server index page.
